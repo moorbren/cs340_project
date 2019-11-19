@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: classmysql.engr.oregonstate.edu:3306
--- Generation Time: Nov 19, 2019 at 03:00 PM
+-- Generation Time: Nov 19, 2019 at 03:31 PM
 -- Server version: 10.3.13-MariaDB-log
 -- PHP Version: 7.0.33
 
@@ -30,7 +30,6 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `Articles` (
   `articleID` int(11) NOT NULL,
-  `author` varchar(128) NOT NULL,
   `title` varchar(255) NOT NULL,
   `creationDate` timestamp NOT NULL DEFAULT current_timestamp(),
   `body` text NOT NULL,
