@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: classmysql.engr.oregonstate.edu:3306
--- Generation Time: Nov 19, 2019 at 03:31 PM
+-- Generation Time: Nov 19, 2019 at 04:19 PM
 -- Server version: 10.3.13-MariaDB-log
 -- PHP Version: 7.0.33
 
@@ -62,7 +62,8 @@ CREATE TABLE `Media` (
   `description` text NOT NULL,
   `creator` varchar(128) NOT NULL,
   `mediaID` int(11) NOT NULL,
-  `title` varchar(128) NOT NULL
+  `title` varchar(128) NOT NULL,
+  `icon` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
