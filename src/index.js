@@ -9,6 +9,8 @@ const express = require('express');
 const exphbs = require('express-handlebars');
 const mysql = require('mysql');
 const path = require('path');
+const fs = require('fs');
+
 
 const app = express();
 
@@ -22,6 +24,9 @@ const hbs = exphbs.create({
 app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
 app.set('views', path.join(path.basename(__dirname), 'views'));
+
+//contains all the views for handlebars
+var viewDictionary = discoverViews('./src/views/');
 
 // Setup static content serving
 app.use(express.static(path.join(path.basename(__dirname), 'public')));
@@ -53,6 +58,20 @@ app.get('/', connectDb, function(req, res) {
   close(req);
 });
 
+app.get('/:pageName', connectDb, function(req, res){
+  console.log(viewDictionary);
+  if(viewDictionary[req.params.pageName + '.hbs']){
+    console.log("Rendering page: " + req.params.pageName);
+    res.render(req.params.pageName);
+  }else{
+    res.render('404');
+  }
+});
+
+app.get('*', connectDb, function(req, res){
+  res.render('404');
+});
+
 /**
  * Handle all of the resources we need to clean up. In this case, we just need 
  * to close the database connection.
@@ -79,3 +98,26 @@ const port = process.env.PORT || 3000;
 app.listen(port, function() {
   console.log('== Server is listening on port', port);
 });
+
+
+/**
+ * Discovers handlebar views to prevent non-existant page rendering. 
+ * @param {*} path 
+ */
+function discoverViews(path){
+  var hashTable = new Object();
+
+  //looping through all files in the directory from the path.
+  //if they contain a .hbs extension, we add it to the view hashtable
+  fs.readdirSync(path).filter(function (value, index, arr){
+    if(arr[index].search('.hbs') == arr[index].length - 4){
+      hashTable[arr[index]] = true; //seeding the hashtable
+
+      return true;
+    }
+  
+    return false;
+  });
+  
+  return hashTable;
+}
