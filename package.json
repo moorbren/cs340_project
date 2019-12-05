@@ -5,8 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node heardAbout/bin/www",
-    "dev": "nodemon heardAbout/bin/www"
+    "start": "node ."
   },
   "repository": {
     "type": "git",
@@ -19,15 +18,11 @@
   },
   "homepage": "https://github.com/bradenhc-osu/nodejs-web-template#readme",
   "dependencies": {
-    "cookie-parser": "^1.4.4",
     "express": "^4.17.1",
     "express-handlebars": "^3.1.0",
-    "hbs": "^4.0.6",
-    "morgan": "^1.9.1",
     "mysql": "^2.17.1"
   },
   "devDependencies": {
-    "forever": "^1.0.0",
-    "nodemon": "^2.0.1"
+    "forever": "^1.0.0"
   }
 }
