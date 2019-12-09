@@ -1,10 +1,13 @@
-/**
- * Node.js Web Application Template
- * 
- * The code below serves as a starting point for anyone wanting to build a
- * website using Node.js, Express, Handlebars, and MySQL. You can also use
- * Forever to run your service as a background process.
- */
+/*********************************
+*        MAIN SERVER FILE        *
+**********************************
+* This is the main server file that runs the whole server. 
+* A lot of functionality is split up into multiple files in the 'util' and 'routes' directories. */
+
+
+/*=========================================
+  ===GLOBAL DEFINITIONS AND SERVER SETUP===
+  =========================================*/
 const express = require('express');
 const exphbs = require('express-handlebars');
 const path = require('path');
@@ -32,7 +35,9 @@ var viewDictionary = utils.discoverViews('./src/views/');
 app.use(express.static(path.join(path.basename(__dirname), 'public')));
 
 
-
+/*=============
+  ===ROUTING=== 
+  ============= */
  
 /**
  * This is the handler for our main page. The middleware pipeline includes
@@ -61,6 +66,9 @@ app.get('*', db.connectDb, function(req, res){
 });
 
 
+/*================== 
+  ===START SERVER=== 
+  ================== */
 
 /**
  * Capture the port configuration for the server. We use the PORT environment
