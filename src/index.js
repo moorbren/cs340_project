@@ -12,6 +12,14 @@ const express = require('express');
 const exphbs = require('express-handlebars');
 const path = require('path');
 
+const cookieParser = require('cookie-parser');
+//cookie-parser examples:
+//res.cookie(name_of_cookie, value_of_cookie); //saves a cookie on the client side, where 'res' is the Express response variable
+
+//then on client side, cookie can be retrieved with this:
+//
+
+
 const db = require('./util/db-interface.js');
 const utils = require('./util/misc.js');
 
@@ -33,6 +41,7 @@ var viewDictionary = utils.discoverViews('./src/views/');
 
 // Setup static content serving
 app.use(express.static(path.join(path.basename(__dirname), 'public')));
+app.use(cookieParser());
 
 
 /*=============

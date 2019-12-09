@@ -47,54 +47,71 @@ html, body {
 *         HEADER STYLING         *
 **********************************/
 
-#header {
+#header{
   width:100%;
   height: var(--header-height);
   border-bottom: var(--c-primary-light) solid 1px;
   position: relative;
 
   background: var(--c-primary);
-  /* box-shadow: 0px 3px 10px 3px  black; */
 }
 
-#company-name {
-  position: relative;
-  text-align: center;
 
+
+#company-name {
   font-family: "Railway", sans-serif;
   font-size: 30px;
   color: white;
   text-shadow: 0px 0px 4px var(--c-offwhite);
   
+  position: relative;
   padding: 20px;
   top: 7px;
+  margin-right: 30px;
 }
 
+.header-item {
+  color: white;
+  font-size: 20px;
+  letter-spacing: 1px;;
+}
 
-.header-button {
-  color: black;
-  background: white;
-  border: 1px solid black;
-  font-size: 16px;
+.header-link {
+  /* text-shadow: 0px 0px 1px white; */
 
   --b-width: 15px;
   --b-height: 5px;
   padding: var(--b-height) var(--b-width) var(--b-height) var(--b-width) ;
 
+  text-decoration: none;
   position: relative;
-  top: 4px;
+  top: 5px;
   margin-left: 30px;
 }
 
-.header-button:hover {
+.header-link:hover {
   background: var(--c-primary-light);
-  color: white;
   transition: 0.3s;
 }
 
-.header-button:active { 
+.header-link:active { 
   user-select: none;
   border: 1px solid black;
+}
+
+.header-login {
+  border: 1px black solid;
+  color: black;
+  background: white;
+  font-size: 16px;
+  height: 100%;
+  float: right;
+  cursor: pointer;
+}
+
+.header-login:active {
+  color: white;
+  background: black;
 }
 
 /*********************************
@@ -108,13 +125,6 @@ html, body {
   color: gray;
   font-size: 14px;
 }
-
-
-/*********************************
-*         LOGIN STYLING          *
-**********************************/
-
-
 
 /*********************************
 *     PAGE SPECIFIC STYLING      *
@@ -131,4 +141,12 @@ html, body {
   text-align: center; 
   position: relative;
   top: 30px;
+}
+
+/*********************************
+*          MISC STYLING          *
+**********************************/
+
+.hidden {
+  display: none;
 }

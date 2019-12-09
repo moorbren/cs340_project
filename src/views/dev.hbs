@@ -1,0 +1,28 @@
+<div>
+    <a href="/article/1">Article 1</a>
+
+    <br/>
+    <br>
+    <div>
+        Cookie information:<span id="cookie-el"></span>
+    </div>
+
+    <br>
+    <button id="dummy-session">Add dummy session</button>
+    <br>
+    <button id="clear-cookie">Clear cookie</button>
+
+    <script>
+        document.querySelector('#dummy-session').addEventListener('click', function(){
+            document.cookie = 'username=dummy';
+            document.cookie = 'session=123456';
+        });
+
+        document.querySelector('#clear-cookie').addEventListener('click', function(){
+            document.cookie = 'username= ; expires = Thu, 01 Jan 1970 00:00:00 GMT';
+            document.cookie = 'session= ; expires = Thu, 01 Jan 1970 00:00:00 GMT';
+        });
+
+        document.querySelector('#cookie-el').textContent = '«' + document.cookie + '»';
+    </script>
+</div>
