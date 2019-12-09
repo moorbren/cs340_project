@@ -4,16 +4,24 @@
 <head>
 
     <meta charset="utf-8">
-    <title>Node.js Template</title>
+    <title>HeardAbout | The place for media.  </title>
 
+    <!-- Google Fonts - Raleway and Archivo -->
+    <link href="https://fonts.googleapis.com/css?family=Archivo:400,700|Raleway:500&display=swap" rel="stylesheet">
+
+    <!-- Main CSS file -->
     <link rel="stylesheet" href="/style.css" media="screen">
 
 </head>
 
-<body>
-    {{>header}}
-    {{{body}}}
+    <body>
+        {{>header}}
+        <div class="page-content">
+            {{{body}}}
+        </div>
+        
 
-</body>
-
+        {{>footer}}
+        {{>script-imports}}
+    </body>
 </html>

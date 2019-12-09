@@ -9,7 +9,7 @@ const express = require('express');
 const exphbs = require('express-handlebars');
 const mysql = require('mysql');
 const path = require('path');
-const fs = require('fs');
+const utils = require('./util/misc.js');
 
 
 const app = express();
@@ -26,7 +26,7 @@ app.set('view engine', 'hbs');
 app.set('views', path.join(path.basename(__dirname), 'views'));
 
 //contains all the views for handlebars
-var viewDictionary = discoverViews('./src/views/');
+var viewDictionary = utils.discoverViews('./src/views/'); 
 
 // Setup static content serving
 app.use(express.static(path.join(path.basename(__dirname), 'public')));
@@ -44,15 +44,13 @@ function connectDb(req, res, next) {
   console.log('Database connected');
   next();
 }
-
+ 
 /**
  * This is the handler for our main page. The middleware pipeline includes
  * our custom `connectDb()` function that creates our database connection and
  * exposes it as `req.db`.
  */
 app.get('/', connectDb, function(req, res) {
-  console.log('Got request for the home page');
-
   res.render('home');
 
   close(req);
@@ -66,6 +64,8 @@ app.get('/:pageName', connectDb, function(req, res){
   }else{
     res.render('404');
   }
+
+  close(req);
 });
 
 app.get('*', connectDb, function(req, res){
@@ -98,26 +98,3 @@ const port = process.env.PORT || 3000;
 app.listen(port, function() {
   console.log('== Server is listening on port', port);
 });
-
-
-/**
- * Discovers handlebar views to prevent non-existant page rendering. 
- * @param {*} path 
- */
-function discoverViews(path){
-  var hashTable = new Object();
-
-  //looping through all files in the directory from the path.
-  //if they contain a .hbs extension, we add it to the view hashtable
-  fs.readdirSync(path).filter(function (value, index, arr){
-    if(arr[index].search('.hbs') == arr[index].length - 4){
-      hashTable[arr[index]] = true; //seeding the hashtable
-
-      return true;
-    }
-  
-    return false;
-  });
-  
-  return hashTable;
-}

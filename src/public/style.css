@@ -1,6 +1,134 @@
+/*********************************
+*         GLOBAL STYLING         *
+**********************************/
+
+* {
+  --c-primary: #DB1F48;
+  --c-primary-light: #E85E7C;
+  --c-primary-lighter: #f8ced7;
+
+  --c-secondary: #004369;
+  --c-secondary-light: #8cd5ff;
+
+  --c-tertiary: #01949A;
+  --c-offwhite: #ebe8e1;
+
+  --header-height: 50px;
+
+  /* using two Google fonts, railway and archivo
+      Archivo: body text, 
+      Railway: website name and maybe headers
+  */
+  font-family: "Archivo", sans-serif; 
+}
+
+/*********************************
+*      DEFAULT BODY STYLING      *
+**********************************/
+
+
 html, body {
   margin: 0px;
   padding: 0px;
+
   width: 100%;
   height: 100%;
+  
+  background: var(--c-offwhite);
+}
+
+.page-content { 
+  height: 100%;
+  padding: 20px;
+}
+
+
+/*********************************
+*         HEADER STYLING         *
+**********************************/
+
+#header {
+  width:100%;
+  height: var(--header-height);
+  border-bottom: var(--c-primary-light) solid 1px;
+  position: relative;
+
+  background: var(--c-primary);
+  /* box-shadow: 0px 3px 10px 3px  black; */
+}
+
+#company-name {
+  position: relative;
+  text-align: center;
+
+  font-family: "Railway", sans-serif;
+  font-size: 30px;
+  color: white;
+  text-shadow: 0px 0px 4px var(--c-offwhite);
+  
+  padding: 20px;
+  top: 7px;
+}
+
+
+.header-button {
+  color: black;
+  background: white;
+  border: 1px solid black;
+  font-size: 16px;
+
+  --b-width: 15px;
+  --b-height: 5px;
+  padding: var(--b-height) var(--b-width) var(--b-height) var(--b-width) ;
+
+  position: relative;
+  top: 4px;
+  margin-left: 30px;
+}
+
+.header-button:hover {
+  background: var(--c-primary-light);
+  color: white;
+  transition: 0.3s;
+}
+
+.header-button:active { 
+  user-select: none;
+  border: 1px solid black;
+}
+
+/*********************************
+*         FOOTER STYLING         *
+**********************************/
+
+#footer {
+  text-align: center;
+  padding: 10px;
+  background: white;
+  color: gray;
+  font-size: 14px;
+}
+
+
+/*********************************
+*         LOGIN STYLING          *
+**********************************/
+
+
+
+/*********************************
+*     PAGE SPECIFIC STYLING      *
+**********************************/
+
+/* ===404=== */
+
+#el404 {
+  font-size: 48px;
+  font-weight: 700;
+  color: white;
+  text-shadow: 0px 0px 8px black;
+  
+  text-align: center; 
+  position: relative;
+  top: 30px;
 }
