@@ -7,10 +7,10 @@
  */
 const express = require('express');
 const exphbs = require('express-handlebars');
-const mysql = require('mysql');
 const path = require('path');
-const utils = require('./util/misc.js');
 
+const db = require('./util/db-interface.js');
+const utils = require('./util/misc.js');
 
 const app = express();
 
@@ -31,33 +31,21 @@ var viewDictionary = utils.discoverViews('./src/views/');
 // Setup static content serving
 app.use(express.static(path.join(path.basename(__dirname), 'public')));
 
-/**
- * Create a database connection. This is our middleware function that will
- * initialize a new connection to our MySQL database on every request.
- */
-const config = require('./config');
-function connectDb(req, res, next) {
-  console.log('Connecting to the database');
-  let connection = mysql.createConnection(config);
-  connection.connect();
-  req.db = connection;
-  console.log('Database connected');
-  next();
-}
+
+
  
 /**
  * This is the handler for our main page. The middleware pipeline includes
  * our custom `connectDb()` function that creates our database connection and
  * exposes it as `req.db`.
  */
-app.get('/', connectDb, function(req, res) {
+app.get('/', db.connectDb, function(req, res) {
   res.render('home');
 
-  close(req);
+  db.close(req);
 });
 
-app.get('/:pageName', connectDb, function(req, res){
-  console.log(viewDictionary);
+app.get('/:pageName', db.connectDb, function(req, res){
   if(viewDictionary[req.params.pageName + '.hbs']){
     console.log("Rendering page: " + req.params.pageName);
     res.render(req.params.pageName);
@@ -65,26 +53,14 @@ app.get('/:pageName', connectDb, function(req, res){
     res.render('404');
   }
 
-  close(req);
+  db.close(req);
 });
 
-app.get('*', connectDb, function(req, res){
+app.get('*', db.connectDb, function(req, res){
   res.render('404');
 });
 
-/**
- * Handle all of the resources we need to clean up. In this case, we just need 
- * to close the database connection.
- * 
- * @param {Express.Request} req the request object passed to our middleware
- */
-function close(req) {
-  if (req.db) {
-    req.db.end();
-    req.db = undefined;
-    console.log('Database connection closed');
-  }
-}
+
 
 /**
  * Capture the port configuration for the server. We use the PORT environment
