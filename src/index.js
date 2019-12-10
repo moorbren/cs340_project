@@ -8,23 +8,24 @@
 /*=========================================
   ===GLOBAL DEFINITIONS AND SERVER SETUP===
   =========================================*/
+
+global.__basedir = __dirname; //finds the base directory of the node project
 const express = require('express');
 const exphbs = require('express-handlebars');
 const path = require('path');
+const mysql = require('mysql');
+const config = require('./config');
 
 const cookieParser = require('cookie-parser');
 //cookie-parser examples:
 //res.cookie(name_of_cookie, value_of_cookie); //saves a cookie on the client side, where 'res' is the Express response variable
 
-//then on client side, cookie can be retrieved with this:
-//
-
 
 const db = require('./util/db-interface.js');
 const utils = require('./util/misc.js');
+const routes = utils.requireFolder('./routes/'); //paths for utils MUST be relative to the src directory
 
 const app = express();
-
 // Configure handlebars
 const hbs = exphbs.create({
   defaultLayout: 'main',
@@ -37,17 +38,34 @@ app.set('view engine', 'hbs');
 app.set('views', path.join(path.basename(__dirname), 'views'));
 
 //contains all the views for handlebars
-var viewDictionary = utils.discoverViews('./src/views/'); 
+var viewDictionary = utils.discoverViews('views/'); 
+console.log(routes);
 
 // Setup static content serving
 app.use(express.static(path.join(path.basename(__dirname), 'public')));
 app.use(cookieParser());
-
+ 
 
 /*=============
   ===ROUTING=== 
   ============= */
  
+
+app.use((req, res, next) => {
+  let conn = mysql.createConnection({
+      host: config.host,
+      user: config.user,
+      password: config.password,
+      database: config.database
+  });
+  conn.connect((err) => {
+      if (err) return next(err);
+      req.db = conn;
+      next();
+  });
+});
+
+
 /**
  * This is the handler for our main page. The middleware pipeline includes
  * our custom `connectDb()` function that creates our database connection and
@@ -59,9 +77,15 @@ app.get('/', db.connectDb, function(req, res) {
   db.close(req);
 });
 
+for(var x = 0; x < routes.length; x++){
+  app.use(routes[x]);
+}
+
+//general routing for pages that don't need database access
 app.get('/:pageName', db.connectDb, function(req, res){
   if(viewDictionary[req.params.pageName + '.hbs']){
     console.log("Rendering page: " + req.params.pageName);
+    if(routes)
     res.render(req.params.pageName);
   }else{
     res.render('404');

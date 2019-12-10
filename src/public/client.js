@@ -1,6 +1,14 @@
 console.log("client js loaded.");
 
 /**
+ * Clears cookies set by this website by setting them to expire at the dawn of time
+ */
+function clearCookies(){
+    document.cookie = 'username= ; expires = Thu, 01 Jan 1970 00:00:00 GMT';
+    document.cookie = 'session= ; expires = Thu, 01 Jan 1970 00:00:00 GMT';
+}
+
+/**
  * Extracts the value of a cookie based on the name. If non-existant, returns undefined
  * Snagged from the internet. 
  * @param {*} name 

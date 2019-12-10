@@ -130,9 +130,9 @@ html, body {
 *     PAGE SPECIFIC STYLING      *
 **********************************/
 
-/* ===404=== */
+/* ===error page=== */
 
-#el404 {
+#error {
   font-size: 48px;
   font-weight: 700;
   color: white;
