@@ -3,6 +3,9 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
 
+const sessionHandler = require('../util/session-handler.js');
+const uuid = require('uuid');
+
 var match = false;
 //Route for validating login
 router.post('/validatelogin', (req, res, next) => {
@@ -23,11 +26,18 @@ router.post('/validatelogin', (req, res, next) => {
       hash = results[0].hash
       bcrypt.compare(password, hash, function(err, data) {
         if(err) return next(err);
+
         if(data == true){
-          res.redirect('home')
-        }
-        else{
-          res.redirect('login_user')
+          var session = uuid.v4();
+          sessionHandler.addSession(session, username);
+          
+          res.cookie('username', username);
+          res.cookie('session', session); 
+          
+          res.redirect('home');
+        } else{
+          
+          res.redirect('login_user?err=Incorrect login!');
         }
       });
     }
