@@ -54,17 +54,17 @@
         <div>
               <table style="margin: auto">
                 <tr>
-                  <th style="border-bottom: 1px solid #ddd; padding: 15px; text-align:center">Title</th>
-                  <th style="border-bottom: 1px solid #ddd; padding: 15px; text-align:center">Description</th>
-                  <th style="border-bottom: 1px solid #ddd; padding: 15px; text-align:center">Creator</th>
-                  <th style="border-bottom: 1px solid #ddd; padding: 15px; text-align:center">Type</th>
+                  <th class="table-row">Title</th>
+                  <th class="table-row">Description</th>
+                  <th class="table-row">Creator</th>
+                  <th class="table-row">Type</th>
                 </tr>
                 {{#each results}}
                 <tr>
-                    <td style="border-bottom: 1px solid #ddd; padding: 15px; text-align:center">{{this.Title}}</td>
-                    <td style="border-bottom: 1px solid #ddd; padding: 15px; text-align:center">{{this.Title}}</td>
-                    <td style="border-bottom: 1px solid #ddd; padding: 15px; text-align:center">{{this.Creator}}</td>
-                    <td style="border-bottom: 1px solid #ddd; padding: 15px; text-align:center">{{this.Type}}</td>
+                    <td class="table-row">{{this.Title}}</td>
+                    <td class="table-row">{{this.Title}}</td>
+                    <td class="table-row">{{this.Creator}}</td>
+                    <td class="table-row">{{this.Type}}</td>
                 </tr>
                 {{/each}}
               </table>

@@ -1,12 +1,13 @@
 const express = require('express');
 const router = express.Router();
+const utils = require('../util/utils.js');
 
 //Route for searching for media
 router.post('/searchMedia', (req, res, next) => {
-  var type = req.body.type //Will always have data
-  var title = req.body.title //May or may not have data
-  var description = req.body.description //May or may not have data
-  var creator = req.body.creator //May or may not have data.
+  var type = utils.escapeSQL(req.body.type); //Will always have data
+  var title = utils.escapeSQL(req.body.title); //May or may not have data
+  var description = utils.escapeSQL(req.body.description); //May or may not have data
+  var creator = utils.escapeSQL(req.body.creator); //May or may not have data.
 
   //format query strings
   var titleString = " AND `title` LIKE '%" + title + "%'"
