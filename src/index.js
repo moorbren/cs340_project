@@ -72,8 +72,22 @@ app.use((req, res, next) => {
  * exposes it as `req.db`.
  */
 app.get('/', db.connectDb, function(req, res) {
-  res.render('home');
+  var query = "SELECT * FROM `Top 25 Media By MEDIA ID`"
+  req.db.query(query, function(err, results){
+    if(err) return next(err);
+    console.log(results)
+    res.render('home', {results: results});
+  })
+  db.close(req);
+});
 
+app.get('/home', db.connectDb, function(req, res) {
+  var query = "SELECT * FROM `Top 25 Media By MEDIA ID`"
+  req.db.query(query, function(err, results){
+    if(err) return next(err);
+    console.log(results)
+    res.render('home', {results: results});
+  })
   db.close(req);
 });
 
@@ -86,13 +100,13 @@ for(var x = 0; x < routes.length; x++){
 app.get('/:pageName', db.connectDb, function(req, res){
   if(viewDictionary[req.params.pageName + '.hbs']){
     console.log("Rendering page: " + req.params.pageName);
-    
+
     res.render(req.params.pageName);
   }else{
     res.render('404');
   }
 
-  db.close(req); 
+  db.close(req);
 });
 
 app.get('*', db.connectDb, function(req, res){
