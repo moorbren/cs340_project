@@ -1,3 +1,28 @@
-<div>
-    <h1>Hello, world!</h1>
+<div id="home-container">
+    <div id="home-blurb">
+      <h1>Welcome to HeardAbout</h1>
+      <h3>It's the soon-to-be-number-one place on the web to talk about the hottest of today's media.</h3>
+      <span><a href="/newuser">Join us!</a> It's free!</span>
+      <hr style="border-top: 1px">
+    </div>
+    
+    <div>
+      <h2>Current Hot Topics</h2>
+
+      <table class="table">
+        <tr>
+          <th class="table-row">Title</th>
+          <th class="table-row">Creator</th>
+          <th class="table-row">Type</th>
+        </tr>
+        {{#each results}}
+        <tr>
+            <td class="table-row">{{this.Title}}</td>
+            <td class="table-row">{{this.Creator}}</td>
+            <td class="table-row">{{this.Type}}</td>
+        </tr>
+        {{/each}}
+      </table>
+    </div>
+    
 </div>
