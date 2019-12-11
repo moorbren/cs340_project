@@ -1,25 +1,28 @@
-<div style = "margin:auto; width:auto; text-align:center;">
-  <div style="width:auto; margin:auto; height:auto; margin:10px;">
-    <h1>Welcome to HeardAbout</h1>
-    <h3>It's the soon-to-be-number-one place on the web to talk about the hottest of today's media.</h3>
-    <p><a href="/newuser">Join us!</a> It's free!</p>
-    <hr style="border-top: 1px">
-    <h2>Current Hot Topics</h2>
+<div id="home-container">
+    <div id="home-blurb">
+      <h1>Welcome to HeardAbout</h1>
+      <h3>It's the soon-to-be-number-one place on the web to talk about the hottest of today's media.</h3>
+      <span><a href="/newuser">Join us!</a> It's free!</span>
+      <hr style="border-top: 1px">
+    </div>
+    
     <div>
-      <table style="margin: auto">
+      <h2>Current Hot Topics</h2>
+
+      <table class="table">
         <tr>
-          <th style="border-bottom: 1px solid #ddd; padding: 15px; text-align:center">Title</th>
-          <th style="border-bottom: 1px solid #ddd;padding: 15px; text-align:center">Creator</th>
-          <th style="border-bottom: 1px solid #ddd;padding: 15px; text-align:center">Type</th>
+          <th class="table-row">Title</th>
+          <th class="table-row">Creator</th>
+          <th class="table-row">Type</th>
         </tr>
         {{#each results}}
         <tr>
-            <td style="border-bottom: 1px solid #ddd;padding: 15px; text-align:center">{{this.Title}}</td>
-            <td style="border-bottom: 1px solid #ddd;padding: 15px; text-align:center">{{this.Creator}}</td>
-            <td style="border-bottom: 1px solid #ddd;padding: 15px; text-align:center">{{this.Type}}</td>
+            <td class="table-row">{{this.Title}}</td>
+            <td class="table-row">{{this.Creator}}</td>
+            <td class="table-row">{{this.Type}}</td>
         </tr>
         {{/each}}
       </table>
     </div>
-  </div>
+    
 </div>

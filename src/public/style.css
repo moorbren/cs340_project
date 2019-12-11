@@ -143,6 +143,32 @@ html, body {
   top: 30px;
 }
 
+/* ===home page=== */
+
+#home-container {
+  margin: auto;
+  width: auto;
+  text-align: center;
+}
+
+#home-blurb {
+  margin:auto; 
+  width:auto; 
+  background: white;
+  box-shadow: 2px 2px 8px gray;
+}
+
+.table-row {
+  border-bottom: 1px solid #ddd;
+  padding: 15px;
+  text-align: center;
+}
+
+.table {
+  margin: auto
+}
+
+
 /*********************************
 *          MISC STYLING          *
 **********************************/
