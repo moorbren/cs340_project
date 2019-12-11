@@ -19,7 +19,7 @@ router.post('/createuser', (req, res, next) => {
   //Compare passwords to confirm spelling, if not redirect to create user page.
   if(password != passwordConfirm){
     console.log("PASSWORDS DO NOT MATCH")
-    res.render('newuser.hbs');
+    res.redirect('newuser.hbs');
   }
 
   //Check to see if username exists. If yes, redirect to create user page.
@@ -28,7 +28,7 @@ router.post('/createuser', (req, res, next) => {
     if (err) return next(err);
     if (results.length != 0){
       console.log("USERNAME EXISTS")
-      res.render('newuser.hbs')
+      res.redirect('newuser.hbs')
     }
   })
 
@@ -40,7 +40,7 @@ router.post('/createuser', (req, res, next) => {
   });
 
 
-  res.render('home.hbs')
+  res.redirect('home')
 })
 
 module.exports = router;
