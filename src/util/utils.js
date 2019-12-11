@@ -43,4 +43,3 @@ exports.requireFolder = function(dirPath){
 
     return allRequired;
 }
-

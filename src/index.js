@@ -22,7 +22,7 @@ const cookieParser = require('cookie-parser');
 
 
 const db = require('./util/db-interface.js');
-const utils = require('./util/misc.js');
+const utils = require('./util/utils.js');
 const routes = utils.requireFolder('./routes/'); //paths for utils MUST be relative to the src directory
 
 const app = express();
@@ -77,6 +77,7 @@ app.get('/', db.connectDb, function(req, res) {
   db.close(req);
 });
 
+//this adds the routes
 for(var x = 0; x < routes.length; x++){
   app.use(routes[x]);
 }
@@ -85,7 +86,7 @@ for(var x = 0; x < routes.length; x++){
 app.get('/:pageName', db.connectDb, function(req, res){
   if(viewDictionary[req.params.pageName + '.hbs']){
     console.log("Rendering page: " + req.params.pageName);
-    if(routes)
+    
     res.render(req.params.pageName);
   }else{
     res.render('404');
