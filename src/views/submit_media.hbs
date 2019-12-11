@@ -1,0 +1,57 @@
+<html>
+    <head>
+        <title> Submit New Media</title>
+
+        <link rel="stylesheet" href="main.css">
+        <meta charset="UTF-8">
+        <meta name="description" content="Submit New Media">
+    </head>
+
+    <body>
+        <h1 id="page-title">
+            Submit New Media
+        </h1>
+
+        <div id="form-parent">
+            <form id="form" action="?" method="post">
+                <table>
+                    <tr>
+                        <td>Media Type</td>
+                        <td>
+                            <select name="type" id="media-type">
+                                <option value="book">Book</option>
+                                <option value="album">Album</option>
+                                <option value="song">Song</option>
+                                <option value="movie">Movie</option>
+                                <option value="tvShow">TV Show</option>
+                            </select>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Title</td>
+                        <td><input type="text" name="title" placeholder="Title of the media..." required></td>
+                    </tr>
+
+                    <tr>
+                        <td>Description</td>
+                        <td><textarea name="description" placeholder="Description of the media..." rows="4" cols="50" required></textarea></td>
+                    </tr>
+
+                    <tr>
+                        <td>Creator</td>
+                        <td><input type="text" name="creator" placeholder="Creator of the media..." required></td>
+                    </tr>
+                    <!-- REMOVED ICON UPLOAD FOR NOW -->
+                    <!-- <tr>
+                        <td>Media Icon</td>
+                        <td><input type="file" id="icon" name="icon" accept="image/png, image/jpeg"></td>
+                    </tr> -->
+                </table>
+
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+
+    </body>
+</html>
