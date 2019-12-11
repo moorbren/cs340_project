@@ -3,7 +3,9 @@ const router = express.Router();
 
 //Route for adding new media
 router.post('/submit_media', (req, res, next) => {
-  var type = utils.escapeSQL(req.body.type);
+  var type = utils.escapeSQL(req.body.type); //Will always have data
+  if(type == "") type = "%";
+  
   var title = utils.escapeSQL(req.body.title);
   var description = utils.escapeSQL(req.body.description);
   var creator = utils.escapeSQL(req.body.creator);

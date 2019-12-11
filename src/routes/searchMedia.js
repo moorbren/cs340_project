@@ -5,6 +5,8 @@ const utils = require('../util/utils.js');
 //Route for searching for media
 router.post('/searchMedia', (req, res, next) => {
   var type = utils.escapeSQL(req.body.type); //Will always have data
+  if(type == "") type = "%";
+
   var title = utils.escapeSQL(req.body.title); //May or may not have data
   var description = utils.escapeSQL(req.body.description); //May or may not have data
   var creator = utils.escapeSQL(req.body.creator); //May or may not have data.
