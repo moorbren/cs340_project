@@ -37,7 +37,6 @@ app.set('views', path.join(path.basename(__dirname), 'views'));
 
 //contains all the views for handlebars
 var viewDictionary = utils.discoverViews('views/');
-console.log(routes);
 
 // Setup static content serving
 app.use(express.static(path.join(path.basename(__dirname), 'public')));

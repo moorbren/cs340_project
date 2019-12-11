@@ -19,6 +19,9 @@ function getCookie(name) {
     if (parts.length == 2) return parts.pop().split(";").shift();
 }
 
+
+
+
 function main(){
     var session = getCookie('session');
     var username = getCookie('username');
@@ -27,7 +30,13 @@ function main(){
         console.log('User session exists, prepping page.');
         document.querySelector('#login').classList.add('hidden');
         document.querySelector('#display-profile').classList.remove('hidden');
-        document.querySelector('#logout').classList.remove('hidden');
+
+        var logoutButton = document.querySelector('#logout');
+        logoutButton.classList.remove('hidden'); //reveals this button
+        logoutButton.addEventListener('click', function(){ //clears session details on click
+            clearCookies();
+            window.location = '/';
+        });
     }
 
 }
