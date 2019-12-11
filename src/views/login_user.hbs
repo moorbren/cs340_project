@@ -1,0 +1,30 @@
+<html>
+    <body>
+        <h1 id="page-title">
+            Login to Account
+        </h1>
+
+        <div id="form-parent">
+            <form id="form" action="/validateLogin" method="post">
+                <table>
+
+                    <tr>
+                        <td>Username</td>
+                        <td><input type="text" name="username" placeholder="Username..."></td>
+                    </tr>
+
+                    <tr>
+                        <td>Password</td>
+                        <td><input type="password" name="password" placeholder="Password..."></td>
+                    </tr>
+                </table>
+                <input type="submit" value="Login">
+            </form>
+        </div>
+        <br>
+        <div>
+          <a href="/newuser">Don't have an account? Click here!</a>
+        </div>
+
+    </body>
+</html>

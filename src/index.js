@@ -1,7 +1,7 @@
 /*********************************
 *        MAIN SERVER FILE        *
 **********************************
-* This is the main server file that runs the whole server. 
+* This is the main server file that runs the whole server.
 * A lot of functionality is split up into multiple files in the 'util' and 'routes' directories. */
 
 
@@ -15,11 +15,9 @@ const exphbs = require('express-handlebars');
 const path = require('path');
 const mysql = require('mysql');
 const config = require('./config');
-
 const cookieParser = require('cookie-parser');
 //cookie-parser examples:
 //res.cookie(name_of_cookie, value_of_cookie); //saves a cookie on the client side, where 'res' is the Express response variable
-
 
 const db = require('./util/db-interface.js');
 const utils = require('./util/utils.js');
@@ -38,18 +36,20 @@ app.set('view engine', 'hbs');
 app.set('views', path.join(path.basename(__dirname), 'views'));
 
 //contains all the views for handlebars
-var viewDictionary = utils.discoverViews('views/'); 
+var viewDictionary = utils.discoverViews('views/');
 console.log(routes);
 
 // Setup static content serving
 app.use(express.static(path.join(path.basename(__dirname), 'public')));
 app.use(cookieParser());
- 
+
 
 /*=============
-  ===ROUTING=== 
+  ===ROUTING===
   ============= */
- 
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 
 app.use((req, res, next) => {
   let conn = mysql.createConnection({
@@ -101,8 +101,8 @@ app.get('*', db.connectDb, function(req, res){
 });
 
 
-/*================== 
-  ===START SERVER=== 
+/*==================
+  ===START SERVER===
   ================== */
 
 /**
