@@ -1,0 +1,73 @@
+
+    <body>
+      <a href="/submit_media">Add new content!</a>
+        <h1 id="page-title">
+            Search For Media
+        </h1>
+        <h3>Search looks for terms in ANY part of field.</h3>
+        <h5>Empty options will not be included in search</h5>
+        <div id="form-parent">
+            <form id="form" action="/searchMedia" method="post">
+                <table>
+                    <tr>
+                        <td>Media Type</td>
+                        <td>
+                            <select name="type" id="media-type">
+                                <option value="%">Any</option>
+                                <option value="book">Book</option>
+                                <option value="album">Album</option>
+                                <option value="song">Song</option>
+                                <option value="movie">Movie</option>
+                                <option value="tvShow">TV Show</option>
+                            </select>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Title</td>
+                        <td><input type="text" name="title" placeholder="Title of the media..." ></td>
+                    </tr>
+
+                    <tr>
+                        <td>Description</td>
+                        <td><textarea name="description" placeholder="Description of the media..." rows="4" cols="50" ></textarea></td>
+                    </tr>
+
+                    <tr>
+                        <td>Creator</td>
+                        <td><input type="text" name="creator" placeholder="Creator of the media..."></td>
+                    </tr>
+                    <!-- REMOVED ICON UPLOAD FOR NOW -->
+                    <!-- <tr>
+                        <td>Media Icon</td>
+                        <td><input type="file" id="icon" name="icon" accept="image/png, image/jpeg"></td>
+                    </tr> -->
+                </table>
+
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+        {{#if results}}
+        <br>
+        <hr>
+        <br>
+        <div>
+              <table style="margin: auto">
+                <tr>
+                  <th class="table-row">Title</th>
+                  <th class="table-row">Description</th>
+                  <th class="table-row">Creator</th>
+                  <th class="table-row">Type</th>
+                </tr>
+                {{#each results}}
+                <tr>
+                    <td class="table-row">{{this.Title}}</td>
+                    <td class="table-row">{{this.Title}}</td>
+                    <td class="table-row">{{this.Creator}}</td>
+                    <td class="table-row">{{this.Type}}</td>
+                </tr>
+                {{/each}}
+              </table>
+            </div>
+            {{/if}}
+    </body>

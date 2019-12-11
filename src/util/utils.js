@@ -46,6 +46,8 @@ exports.requireFolder = function(dirPath){
 
 //copy pasted from stack overflow
 exports.escapeSQL = function (str) {
+    if(str == undefined || str == "") return str;
+
     return str.replace(/[\0\x08\x09\x1a\n\r"'\\\%]/g, function (char) {
         switch (char) {
             case "\0":
