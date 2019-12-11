@@ -92,7 +92,7 @@ app.get('/:pageName', db.connectDb, function(req, res){
     res.render('404');
   }
 
-  db.close(req);
+  db.close(req); 
 });
 
 app.get('*', db.connectDb, function(req, res){
