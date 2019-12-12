@@ -1,5 +1,3 @@
-console.log("client js loaded.");
-
 /**
  * Clears cookies set by this website by setting them to expire at the dawn of time
  */
@@ -20,12 +18,10 @@ function getCookie(name) {
 }
 
 
-
-
 function main(){
     var session = getCookie('session');
     var username = getCookie('username');
-
+    
     if(session && username){
         console.log('User session exists, prepping page.');
         document.querySelector('#login').classList.add('hidden');

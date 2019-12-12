@@ -8,7 +8,7 @@ const uuid = require('uuid');
 
 var match = false;
 //Route for validating login
-router.post('/validatelogin', (req, res, next) => {
+router.post('/login_user', (req, res, next) => {
   var password = req.body.password
   var username = req.body.username
   var hash = "";
@@ -30,7 +30,6 @@ router.post('/validatelogin', (req, res, next) => {
         if(data == true){
           var session = uuid.v4();
           sessionHandler.addSession(session, username);
-          
           res.cookie('username', username);
           res.cookie('session', session); 
           

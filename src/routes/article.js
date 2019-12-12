@@ -23,7 +23,6 @@ router.get('/article/:articleID', (req, res, next) => {
 
     }else{ //only doing DB query if the id is a valid integer
         
-        console.log(articleID);
         req.db.query(
             `
             SELECT a.title, a.creationDate, a.body, a.articleID, a.username, a.mediaID

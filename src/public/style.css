@@ -175,6 +175,21 @@ html, body {
 *          MISC STYLING          *
 **********************************/
 
+#err-message {
+  background: lightcoral;
+  border: solid 4px red;
+  border-radius: 5px;
+  
+  padding: 10px;
+  font-size: 24px;
+  width: auto;
+  height: 30px;
+  text-align: center;
+  margin-bottom: 10px;
+  font-weight: bold;
+  box-shadow: 0px 0px 8px gray;
+}
+
 .card {
   box-shadow: 2px 2px 8px gray;
   background: white;
