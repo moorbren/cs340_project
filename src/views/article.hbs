@@ -1,3 +1,5 @@
+<div id="err-message" class="hidden" style="margin-bottom: 60px;"></div>
+
 {{#if article}}
     <div id="article" class="card">
         <div class="article-title">{{article.title}}</div>
@@ -7,9 +9,41 @@
         <div class="article-author"></div>
         <div class="article-body">{{article.body}}</div>
     </div>
+
+    {{>comment-table}}
+
+    <div class="card" style="margin:auto;width:400px">
+        <div style="font-size:28px;margin-bottom:10px;">Comment on this article</div>
+        <form action="/uploadComment"  method="post">
+            <input id="session-submit" class="hidden" type="text" name="session">
+            <input id="username-submit" class="hidden" type="text" name="username">
+            <input id="articleID-submit" class="hidden" type="text" name="articleID">
+
+            <textarea name="body" placeholder="Body of the media..." rows="4" style="width: 100%" required></textarea>
+            <input class="header-login" style="display: block;float:none;width:100%;" type="submit"
+                                    value="Submit">
+        </form>
+    </div>
+
+    <script>
+    const lastSlash = ("" + window.location).substring(("" + window.location).lastIndexOf('/') +1, ("" + window.location).length);
+    var mediaID = "";
+    for(var x = 0; x < lastSlash.length; x++){
+        if(lastSlash[x] >= '0' && lastSlash[x] <= '9'){
+            mediaID+= lastSlash[x];
+        }
+    }
+
+    document.querySelector('#articleID-submit').value = mediaID
+</script>
+
+
 {{else}}
     <div id="err-message">Article not found</div>
 {{/if}}
 
 
-{{>comment-table}}
+
+
+
+
