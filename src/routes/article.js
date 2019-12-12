@@ -32,7 +32,6 @@ router.get('/article/:articleID', (req, res, next) => {
             WHERE a.articleID = ` + articleID + ` AND m.mediaId = a.mediaID`
             ,
             (err, article) => {
-                console.log(article);
                 if (err){
                     db.close(req);
                     return;
