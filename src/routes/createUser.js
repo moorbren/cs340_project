@@ -21,9 +21,8 @@ router.post('/newuser', (req, res, next) => {
   else {
     isJournalist = 1;
   }
-
   //Compare passwords to confirm spelling, if not redirect to create user page.
-  if(password != passwordConfirm){
+  if(password !== passwordConfirm){
     console.log("PASSWORDS DO NOT MATCH");
     req.url += ''
     db.close(req);
@@ -31,33 +30,51 @@ router.post('/newuser', (req, res, next) => {
     return;
   }
 
+
   //Check to see if username exists. If yes, redirect to create user page.
   var query = "SELECT * FROM Users WHERE Users.username = " + username;
   req.db.query(query, function(err, results){
-    if (err) return next(err);
+    if (err){
+      console.log(err);
+      res.render('404');
+      return;
+    };
+
     if (results.length != 0){
       console.log("USERNAME EXISTS");
       db.close(req);
       res.redirect('newuser?err=User already exists!');
       return;
     }
+
+    bcrypt.hash(password, saltRounds, function(err, hash) {
+      query = "INSERT INTO `Users` (`username`, `hash`, `creationDate`, `isAuthor`) VALUES (" + username + ", '" + hash + "', current_timestamp(), '" + isJournalist + "')"
+  
+      if(!req.db){
+        res.render('404');
+        return;
+      }
+  
+      req.db.query(query, function(err, results){
+        if (err){
+          console.log(err);
+          res.render('404');
+          return;
+        }
+
+        db.close(req)
+  
+  
+        var session = uuid.v4();
+        sessionHandler.addSession(session, username);
+      
+        res.cookie('username', username);
+        res.cookie('session', session);
+        res.redirect('home');
+      })
+    });
+    
   })
-
-  bcrypt.hash(password, saltRounds, function(err, hash) {
-    query = "INSERT INTO `Users` (`username`, `hash`, `creationDate`, `isAuthor`) VALUES (" + username + ", '" + hash + "', current_timestamp(), '" + isJournalist + "')"
-    req.db.query(query, function(err, results){
-      if(err) return next(err);
-    })
-  });
-  db.close(req)
-
-
-  var session = uuid.v4();
-  sessionHandler.addSession(session, username);
-
-  res.cookie('username', username);
-  res.cookie('session', session);
-  res.redirect('home');
 })
 
 module.exports = router;
