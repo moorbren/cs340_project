@@ -1,4 +1,4 @@
-
+<div id="err-message" class="hidden">Message unset</div>
 {{#if media}}
     {{#with media}}
     <div id="media">
@@ -9,8 +9,40 @@
         {{#if Rating}}
           <div class="media-rating">{{Rating}}</div>
         {{else}}
-          <div class="media-ratingLink">No ratings yet! <a href="#">Be the first!</a></div>
+          <div class="media-ratingLink">No ratings yet! Be the first!</div>
         {{/if}}
+        <h1 id="page-title">
+            Add Rating
+        </h1>
+        <div id="form-parent">
+            <form id="form" action="/addRating" method="post">
+                <table>
+                    <tr>
+                        <td>Rating</td>
+                        <td>
+                            <select name="rating" id="media-rating">
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+                  <input id="session-submit" class="hidden" type="text" name="session">
+                  <input id="username-submit" class="hidden" type="text" name="username">
+                <input type="hidden" name="passedMediaID" value="{{mediaID}}">
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+
     </div>
     {{/with}}
 
