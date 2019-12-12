@@ -11,7 +11,6 @@ const utils = require('../util/utils.js');
  */
 router.get('/user/:username', (req, res, next) => {
     var username = utils.escapeSQL(req.params.username);
-    console.log(username)
 
     if(username.length == 0){
         db.close(req);
@@ -24,18 +23,27 @@ router.get('/user/:username', (req, res, next) => {
         SELECT u.username, u.creationDate, u.isAuthor
         FROM Users u
         WHERE u.username="` + username + '"',
-            (err, results) => {
-                db.close(req);
-                console.log(results);
-                if (err) return next(err);
-                if(results.length == 0){
+            (err, user) => {
+                if(err || user.length == 0){
                     res.render('404');
                     return;
-                }else if(results.length > 1){
-                    res.render('500');
-                    return;
                 }
-                res.render('user', results[0]);
+
+                req.db.query(
+                    `
+                    SELECT a.articleId, a.username, a.creationDate, a.title, a.articleID
+                    FROM Articles a
+                    WHERE a.username = "` + username + '"',
+                    (err, articles) => {
+                        if(err){
+                            res.render('404');
+                            return;
+                        }
+
+                        res.render('user', {user: user[0], articles: articles});
+                        return;
+                    });
+                
             }
         );   
     }
