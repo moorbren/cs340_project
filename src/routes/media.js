@@ -48,6 +48,7 @@ req.db.query(query,
                     }
 
                     res.render('media', {articles: articles, media: media[0]});
+                    return;
                 });
 
                 if(media.length == 0){

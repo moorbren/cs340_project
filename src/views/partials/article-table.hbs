@@ -1,6 +1,4 @@
-
-<h1 style="text-align: center;text-decoration: underline;">All Articles</h1>
-<table class="table">
+<table class="table card">
     <tr>
         <th class="table-row table-header">Title</th>
         <th class="table-row table-header">Creation Date</th>
@@ -8,7 +6,7 @@
     </tr>
     
     
-    {{#each results}} 
+    {{#each articles}} 
     <tr>
         <td class="table-row"><a href="/article/{{this.articleID}}"  >{{this.title}}</a></td>
         <td class="table-row">{{this.creationDate}}</td>

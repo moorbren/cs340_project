@@ -1,7 +1,11 @@
-<div id="usercard" class="card">
-    <div><h2 isAuthor="{{isAuthor}}" id="user-header">{{username}}</h2></div>
-    <div id="user-date">{{creationDate}}</div>
+<div id="user-container" class="card" style="width: 50%;margin: auto;">
+    <div><h2 isAuthor="{{user.isAuthor}}" id="user-header">{{user.username}}</h2></div>
+    <div id="user-date"><span style="font-weight: bold">Account Created:</span> {{user.creationDate}}</div>
 </div>
+
+{{#if articles}}
+{{>article-table}}
+{{/if}}
 
 <script>
     var header = document.querySelector('#user-header');

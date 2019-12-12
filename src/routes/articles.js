@@ -7,10 +7,11 @@ router.get('/articles', (req, res, next) => {
     req.db.query(query, function(err, results){
   
       if(err){
-        console.log(err)
+        db.close(req);
+        console.log(err);
+
         return;
       } 
-      console.log(results)
       db.close(req);
       res.render('articles', {results: results});
     })
