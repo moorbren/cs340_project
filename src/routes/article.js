@@ -27,11 +27,12 @@ router.get('/article/:articleID', (req, res, next) => {
         
         req.db.query(
             `
-            SELECT a.title, a.creationDate, a.body, a.articleID, a.username, a.mediaID
-            FROM Articles a 
-            WHERE a.articleID = ` + articleID + `
-            `,
+            SELECT a.title, a.creationDate, a.body, a.articleID, a.username, a.mediaID, m.mediaID, m.title AS "mTitle"
+            FROM Articles a, Media m
+            WHERE a.articleID = ` + articleID + ` AND m.mediaId = a.mediaID`
+            ,
             (err, article) => {
+                console.log(article);
                 if (err){
                     db.close(req);
                     return;
@@ -46,8 +47,8 @@ router.get('/article/:articleID', (req, res, next) => {
                     `
                     SELECT c.commentID, c.body, c.dateAdded, c.username
                     FROM Comments c
-                    WHERE c.articleID = ` + articleID + `
-                    `,
+                    WHERE c.articleID = ` + articleID + ``
+                    ,
                     (err, comments) => {
                         if (err) {console.log(err); return;}
                         

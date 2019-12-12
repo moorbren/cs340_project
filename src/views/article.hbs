@@ -2,11 +2,13 @@
     <div id="article" class="card">
         <div class="article-title">{{article.title}}</div>
         <div class="article-info">Posted on {{article.creationDate}} by <a href="/user/{{article.username}}">{{article.username}}</a></div>
+        <div class="article-media"><a href="/media/{{article.mediaID}}">{{article.mTitle}}</a></div>
+
         <div class="article-author"></div>
         <div class="article-body">{{article.body}}</div>
     </div>
 {{else}}
-    <div id="err-message">article not found</div>
+    <div id="err-message">Article not found</div>
 {{/if}}
 
 

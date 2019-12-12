@@ -169,10 +169,6 @@ html, body {
 
 /* ===article display page===*/
 
-.comment {
-  
-}
-
 .comment-date {
   color: gray;
 }
@@ -180,8 +176,6 @@ html, body {
 .comment-body {
   margin-bottom: 15px;
 }
-
-
 
 .article-title {
   font-size: 32px;
@@ -191,6 +185,11 @@ html, body {
 
 .article-info {
   color: gray;
+  font-size: 18px;
+  margin-bottom: 4px;
+}
+
+.article-media {
   font-size: 18px;
   margin-bottom: 30px;
 }
