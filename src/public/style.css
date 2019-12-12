@@ -151,13 +151,6 @@ html, body {
   text-align: center;
 }
 
-#home-blurb {
-  margin:auto; 
-  width:auto; 
-  background: white;
-  box-shadow: 2px 2px 8px gray;
-}
-
 .table-row {
   border-bottom: 1px solid #ddd;
   padding: 15px;
@@ -168,10 +161,31 @@ html, body {
   margin: auto
 }
 
+/* ===about page=== */
+
+#about-container {
+  margin:auto; 
+  width:auto; 
+  text-align:center;
+}
+
+
 
 /*********************************
 *          MISC STYLING          *
 **********************************/
+
+.card {
+  box-shadow: 2px 2px 8px gray;
+  background: white;
+}
+
+#blurb {
+  padding: 10px;
+  padding-bottom: 20px;
+  margin:auto; 
+  width:auto; 
+}
 
 .hidden {
   display: none;
