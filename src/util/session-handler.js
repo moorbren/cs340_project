@@ -1,7 +1,7 @@
 global.sessionTable = new Object();
 
 
-const session_timeout = 12 * 60 * 60; //12 hours in seconds
+const session_timeout = 12 * 60 * 60 * 1000; //12 hours in millisecondsseconds
 
 /**
  * This lookups a sessior object in the table and returns true if it is, otherwise returns false. 

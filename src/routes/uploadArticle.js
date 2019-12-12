@@ -14,10 +14,8 @@ router.post('/submit_article', (req, res, next) => {
   if(!sessionHandler.isValidSession(req.body.session, req.body.username)){
     db.close(req)
 
-    document.cookie = ;
-    document.cookie = '';
-    res.cookie('username', " ; expires = Thu, 01 Jan 1970 00:00:00 GMT");
-    res.cookie('session', " ; expires = Thu, 01 Jan 1970 00:00:00 GMT");
+    res.clearCookie('session');
+    res.clearCookie('username');
     res.redirect('submit_article?mediaID='+mediaID+'&err=Please login to post!');
     return;
   }
