@@ -1,6 +1,24 @@
-<table>
 
-</table>
+{{#if comments}}
+    <table class="card table" style="padding-bottom: 30px;">
+        <tr>
+            <th class="table-row table-header">Date Added</th>
+            <th class="table-row table-header">Body</th>
+            <th class="table-row table-header">Username</th>
+        </tr>
+        
+        
+        {{#each comments}} 
+        <tr>
+            <td class="table-row">{{this.dateAdded}}</td>
+            <td class="table-row">{{this.body}}</td>
+            <td class="table-row">{{this.username}}</td>
+        </tr>
+        {{/each}}
+    </table>
+{{else}}
+<div id="err-message">No comments found for this article.</div>
+{{/if}}
 
 <form>
     

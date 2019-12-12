@@ -167,6 +167,27 @@ html, body {
 }
 
 
+/* ===article display page===*/
+
+.article-title {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.article-info {
+  color: gray;
+  font-size: 18px;
+  margin-bottom: 30px;
+}
+
+#article {
+  padding: 20px;
+  width: 75%;
+  margin: auto;
+  margin-bottom: 20px;
+}
+
 /* ===user display page===*/
 
 #user-container #user-header, #user-date {
@@ -178,6 +199,12 @@ html, body {
   font-weight: bold;
   margin-block-start: 0px;
   margin-block-end: 0px; 
+}
+
+/* ===login page===*/
+.login-container{
+  width: 50%;
+  margin: auto;
 }
 
 /*********************************
@@ -199,6 +226,7 @@ html, body {
   margin: auto;
   margin-top: 30px;
   margin-bottom: 50px; 
+  padding-bottom: 30px;
 }
 
 
@@ -214,9 +242,10 @@ html, body {
   
   padding: 10px;
   font-size: 24px;
-  width: auto;
+  width: 50%;
   height: 30px;
   text-align: center;
+  margin: auto;
   margin-bottom: 10px;
   font-weight: bold;
   box-shadow: 0px 0px 8px gray;
@@ -232,7 +261,7 @@ html, body {
   padding: 10px;
   padding-bottom: 20px;
   margin:auto; 
-  width:auto; 
+  width: 50%;
 }
 
 .hidden {

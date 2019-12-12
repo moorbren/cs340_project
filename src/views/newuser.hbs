@@ -1,34 +1,36 @@
+<div class="card login-container">
+    <h1 id="page-title">
+        Create New User Account
+    </h1>
 
-<h1 id="page-title">
-    Create New User Account
-</h1>
+    <div id="err-message" class="hidden">Message unset</div>
+    <div id="form-parent">
+        <form id="form" action="/newuser" method="post">
+            <table>
 
-<div id="err-message" class="hidden">Message unset</div>
-<div id="form-parent">
-    <form id="form" action="/newuser" method="post">
-        <table>
+                <tr>
+                    <td>Username</td>
+                    <td><input type="text" name="username" placeholder="Username..." minlength="4" maxlength="32" required></td>
+                </tr>
 
-            <tr>
-                <td>Username</td>
-                <td><input type="text" name="username" placeholder="Username..." minlength="4" maxlength="32" required></td>
-            </tr>
+                <tr>
+                    <td>Password</td>
+                    <td><input type="password" name="password" placeholder="Password..." minlength="4" required></td>
+                </tr>
 
-            <tr>
-                <td>Password</td>
-                <td><input type="password" name="password" placeholder="Password..." minlength="4" required></td>
-            </tr>
+                <tr>
+                    <td>Confirm Password</td>
+                    <td><input type="password" name "passwordConfirm" placeholder="Confirm password..." required></td>
+                </tr>
 
-            <tr>
-                <td>Confirm Password</td>
-                <td><input type="password" name "passwordConfirm" placeholder="Confirm password..." required></td>
-            </tr>
+                <tr>
+                    <td>Would you like to be a journalist?</td>
+                    <td><input type="checkbox" name="isJournalist"></td>
+                </tr>
+            </table>
 
-            <tr>
-                <td>Would you like to be a journalist?</td>
-                <td><input type="checkbox" name="isJournalist"></td>
-            </tr>
-        </table>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
 
-        <input type="submit" value="Submit">
-    </form>
 </div>
