@@ -8,9 +8,9 @@ var uuid = require('uuid');
 const saltRounds = 10;
 
 //Route for creating user
-router.post('/createuser', (req, res, next) => {
+router.post('/newuser', (req, res, next) => {
   var password = req.body.password;
-  var passwordConfirm = req.body.password;
+  var passwordConfirm = req.body.passwordConfirm;
   var username = req.body.username;
   var isJournalist = req.body.isJournalist;
   if (isJournalist == undefined){
@@ -21,11 +21,13 @@ router.post('/createuser', (req, res, next) => {
   }
 
   //Compare passwords to confirm spelling, if not redirect to create user page.
+  console.log(password + " " + passwordConfirm)
   if(password != passwordConfirm){
     console.log("PASSWORDS DO NOT MATCH");
     req.url += ''
 
     res.redirect('newuser?err=Passwords do not match!');
+    return;
   }
 
   //Check to see if username exists. If yes, redirect to create user page.
@@ -36,6 +38,7 @@ router.post('/createuser', (req, res, next) => {
       console.log("USERNAME EXISTS");
 
       res.redirect('newuser?err=User already exists!');
+      return;
     }
   })
 
@@ -45,6 +48,7 @@ router.post('/createuser', (req, res, next) => {
       if(err) return next(err);
     })
   });
+  req.db.close();
 
   var session = uuid.v4();
   sessionHandler.addSession(session, username);

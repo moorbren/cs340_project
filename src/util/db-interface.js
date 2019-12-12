@@ -24,6 +24,7 @@ exports.connectDb = function(req, res, next) {
   connection.connect(function(err){
     if(err){
       console.log('Database error: ' + err);
+      exports.close(connection);
     }
   });
 
