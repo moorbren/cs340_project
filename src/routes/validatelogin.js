@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
+const db = require('../util/db-interface.js');
 
 const sessionHandler = require('../util/session-handler.js');
 const uuid = require('uuid');
@@ -40,6 +41,7 @@ router.post('/login_user', (req, res, next) => {
       });
     }
   })
+    db.close(req);
 })
 
 module.exports = router;

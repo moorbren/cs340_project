@@ -7,13 +7,13 @@
             <th class="table-row table-header">Creation Date</th>
             <th class="table-row table-header">Creator</th>
         </tr>
-        
-        
-        {{#each results}} 
+
+
+        {{#each results}}
         <tr>
             <td class="table-row"><a href="/article/{{this.articleID}}"  >{{this.title}}</a></td>
             <td class="table-row">{{this.creationDate}}</td>
-            <td class="table-row">{{this.username}}</td>
+            <td class="table-row"><a href="/user/{{this.username}}">{{this.username}}</a></td>
         </tr>
         {{/each}}
 

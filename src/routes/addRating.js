@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const sessionHandler = require('../util/session-handler.js');
 const utils = require('../util/utils.js');
+const db = require('../util/db-interface.js');
 
 router.post('/addRating', (req, res, next) => {
   var backURL=req.header('Referer') || '/';
@@ -24,6 +25,7 @@ router.post('/addRating', (req, res, next) => {
       if(err) return next(err);
       console.log("Rating successfully recorded!")
     });
+    db.close(req);
     res.redirect(backURL);
 });
 

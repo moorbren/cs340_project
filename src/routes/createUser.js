@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt');
 
 const sessionHandler = require('../util/session-handler.js');
 var uuid = require('uuid');
+const db = require('../util/db-interface.js');
 
 const saltRounds = 10;
 
@@ -25,7 +26,7 @@ router.post('/newuser', (req, res, next) => {
   if(password != passwordConfirm){
     console.log("PASSWORDS DO NOT MATCH");
     req.url += ''
-
+    db.close(req);
     res.redirect('newuser?err=Passwords do not match!');
     return;
   }
@@ -36,7 +37,7 @@ router.post('/newuser', (req, res, next) => {
     if (err) return next(err);
     if (results.length != 0){
       console.log("USERNAME EXISTS");
-
+      db.close(req);
       res.redirect('newuser?err=User already exists!');
       return;
     }
@@ -44,11 +45,11 @@ router.post('/newuser', (req, res, next) => {
 
   bcrypt.hash(password, saltRounds, function(err, hash) {
     query = "INSERT INTO `Users` (`username`, `hash`, `creationDate`, `isAuthor`) VALUES (" + username + ", '" + hash + "', current_timestamp(), '" + isJournalist + "')"
-    console.log(query)
     req.db.query(query, function(err, results){
       if(err) return next(err);
     })
   });
+  db.close(req)
 
 
   var session = uuid.v4();

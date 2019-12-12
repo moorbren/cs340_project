@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const utils = require('../util/utils.js');
+const db = require('../util/db-interface.js');
 
 //Route for searching for media
 router.post('/searchMedia', (req, res, next) => {
@@ -31,18 +32,16 @@ router.post('/searchMedia', (req, res, next) => {
     }
     query += groupByString
 
-    console.log(query);
-
   req.db.query(query, function(err, results){
     if (err) return next(err);
     console.log("Media successfully searched!")
-    console.log(results)
     if(results.length == 0){
       res.redirect("/mediasearch")
     }else{
       res.render("mediasearch", {results: results});
     }
   })
+  db.close(req);
 })
 
 module.exports = router;
