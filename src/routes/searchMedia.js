@@ -12,12 +12,13 @@ router.post('/searchMedia', (req, res, next) => {
   var creator = utils.escapeSQL(req.body.creator); //May or may not have data.
 
   //format query strings
-  var titleString = " AND `title` LIKE '%" + title + "%'"
-  var descriptionString = " AND `description` LIKE '%" + description + "%'"
-  var creatorString = " AND `creator` LIKE '%" + creator + "%'"
+  var titleString = " AND `t`.`title` LIKE '%" + title + "%'"
+  var descriptionString = " AND `t`.`description` LIKE '%" + description + "%'"
+  var creatorString = " AND `t`.`creator` LIKE '%" + creator + "%'"
+  var groupByString = " GROUP BY `t`.`mediaID`"
 
   //Check to see if username exists. If yes, redirect to login user page.
-  var query = "SELECT mediaId, `type` AS `Type`, `title` AS `Title`, `description` AS `Description`, `creator` AS `Creator` FROM `Media` WHERE `type` LIKE '" + type + "'"
+  var query = "SELECT `t`.`title` AS `Title`, `t`.`creator` AS `Creator`, AVG(`r`.`rating`) AS `Rating`, `t`.`type` AS `Type`, `t`.`description` AS `Description`, `t`.`mediaID` FROM (`cs340_steelebe`.`Media` `t` LEFT JOIN `cs340_steelebe`.`Ratings` `r` ON (`t`.`mediaID` = `r`.`mediaID`)) WHERE `t`.`type` LIKE '" + type + "'"
 
     if(title != ""){
       query += titleString
@@ -28,12 +29,14 @@ router.post('/searchMedia', (req, res, next) => {
     if(creator != ""){
       query += creatorString
     }
+    query += groupByString
 
     console.log(query);
 
   req.db.query(query, function(err, results){
     if (err) return next(err);
     console.log("Media successfully searched!")
+    console.log(results)
     if(results.length == 0){
       res.redirect("/mediasearch")
     }else{

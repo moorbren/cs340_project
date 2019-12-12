@@ -9,10 +9,11 @@ const saltRounds = 10;
 
 //Route for creating user
 router.post('/newuser', (req, res, next) => {
+  var username = req.db.escape(req.body.username)
   var password = req.body.password;
   var passwordConfirm = req.body.passwordConfirm;
-  var username = req.body.username;
   var isJournalist = req.body.isJournalist;
+
   if (isJournalist == undefined){
     isJournalist = 0;
   }
@@ -31,7 +32,7 @@ router.post('/newuser', (req, res, next) => {
   }
 
   //Check to see if username exists. If yes, redirect to create user page.
-  var query = "SELECT * FROM Users WHERE Users.username = '" + username + "'";
+  var query = "SELECT * FROM Users WHERE Users.username = " + username;
   req.db.query(query, function(err, results){
     if (err) return next(err);
     if (results.length != 0){
@@ -54,7 +55,7 @@ router.post('/newuser', (req, res, next) => {
   sessionHandler.addSession(session, username);
 
   res.cookie('username', username);
-  res.cookie('session', session); 
+  res.cookie('session', session);
   res.redirect('home');
 })
 
