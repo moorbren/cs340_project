@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-//const db = require('util/db-interface.js');
+const db = require('../util/db-interface.js');
 
 /**
  * Route for listing the catalog of parts.
@@ -19,7 +19,9 @@ router.get('/media/:mediaID', (req, res, next) => {
 
     
     if(!validInt || mediaID.length == 0){
+        db.close(req);
         res.render('404');
+        return;
 
     }else{ //only doing DB query if the id is a valid integer
         
@@ -31,7 +33,9 @@ router.get('/media/:mediaID', (req, res, next) => {
             `,
             (err, media) => {
                 if (err){
+                    db.close(req);
                     res.render('500');
+
                     return;
                 } 
 
@@ -39,6 +43,8 @@ router.get('/media/:mediaID', (req, res, next) => {
                                 FROM Articles a
                                 WHERE a.mediaID = ` + mediaID, 
                 (err, articles) =>{
+                    db.close(req);
+                    
                     if (err){
                         res.render('500');
                         return;
@@ -49,8 +55,10 @@ router.get('/media/:mediaID', (req, res, next) => {
 
                 if(media.length == 0){
                     res.render('404');
+                    return;
                 }else if(media.length > 1){
                     res.render('500');
+                    return;
                 }
             }
         );
