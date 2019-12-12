@@ -49,10 +49,7 @@ router.post('/newuser', (req, res, next) => {
       if(err) return next(err);
     })
   });
-<<<<<<< HEAD
-=======
 
->>>>>>> 03c0d71a9fe9f730f50a5589e8d1fa2e148c5780
 
   var session = uuid.v4();
   sessionHandler.addSession(session, username);

@@ -25,12 +25,9 @@ function main(){
     if(session && username){
         console.log('User session exists, prepping page.');
         document.querySelector('#login').classList.add('hidden');
-<<<<<<< HEAD
         var ad = document.querySelector('#join-ad');
         if(ad) ad.innerHTML = "";
-=======
 
->>>>>>> 03c0d71a9fe9f730f50a5589e8d1fa2e148c5780
 
         var logoutButton = document.querySelector('#logout');
         logoutButton.classList.remove('hidden'); //reveals this button
