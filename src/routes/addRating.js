@@ -12,7 +12,7 @@ router.post('/addRating', (req, res, next) => {
     var username = utils.escapeSQL(req.body.username.substring(1).slice(0,-1))
     var rating = req.body.rating;
     var mediaID = req.body.passedMediaID;
-    var query = "INSERT INTO `Ratings` (`mediaID`, `username`, `rating`) VALUES ("+mediaID+", '"+username+"', "+rating+")"
+    var query = "INSERT INTO `Ratings` (`mediaID`, `username`, `rating`) VALUES ("+mediaID+", '"+username+"', "+rating+") ON DUPLICATE KEY UPDATE `rating` = "+rating
     console.log(query)
     req.db.query(query, (results, err) =>{
       if(err) return next(err);
