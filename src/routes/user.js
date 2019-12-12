@@ -9,7 +9,7 @@ const utils = require('../util/utils.js');
  * This serves as an example of joining tables to produce more complex queries. You do not need to modify anything
  * in this file.
  */
-router.get('/user/:username', (req, res, next) => {
+router.get('/user/:username', db.connectDb, (req, res, next) => {
     var username = utils.escapeSQL(req.params.username);
 
     if(username.length == 0){

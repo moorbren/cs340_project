@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const db = require('../util/db-interface')
 
-router.get('/articles', (req, res, next) => {
+router.get('/articles', db.connectDb, (req, res, next) => {
     var query = "SELECT * FROM Articles"
     req.db.query(query, function(err, results){
   

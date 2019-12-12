@@ -8,7 +8,7 @@ const db = require('../util/db-interface.js');
  * This serves as an example of joining tables to produce more complex queries. You do not need to modify anything
  * in this file.
  */
-router.get('/article/:articleID', (req, res, next) => {
+router.get('/article/:articleID', db.connectDb, (req, res, next) => {
     var articleID = req.params.articleID, validInt = true;
     for(var x = 0; x < articleID.length; x++){
         if(articleID[x] < '0' && articleID[x] > '9'){
