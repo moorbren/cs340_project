@@ -22,7 +22,6 @@ router.post('/newuser', (req, res, next) => {
   }
 
   //Compare passwords to confirm spelling, if not redirect to create user page.
-  console.log(password + " " + passwordConfirm)
   if(password != passwordConfirm){
     console.log("PASSWORDS DO NOT MATCH");
     req.url += ''
