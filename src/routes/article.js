@@ -22,7 +22,7 @@ router.get('/article/:articleID', (req, res, next) => {
         db.close(req);
         res.render('404');
         return;
-
+ 
     }else{ //only doing DB query if the id is a valid integer
         
         req.db.query(
@@ -31,18 +31,29 @@ router.get('/article/:articleID', (req, res, next) => {
             FROM Articles a 
             WHERE a.articleID = ` + articleID + `
             `,
-            (err, results) => {
-                db.close(req);
-
-                if (err) return next(err);
-                if(results.length == 0){
-                    res.render('404');
-                    return;
-                }else if(results.length > 1){
-                    res.render('500');
+            (err, article) => {
+                if (err){
+                    db.close(req);
                     return;
                 }
-                res.render('article', results[0]);
+
+                if(article.length == 0){
+                    db.close(req);
+                    res.render('404');
+                    return;
+                }
+                req.db.query(
+                    `
+                    SELECT c.commentID, c.body, c.dateAdded, c.username
+                    FROM Comments c
+                    WHERE c.articleID = ` + articleID + `
+                    `,
+                    (err, comments) => {
+                        if (err) {console.log(err); return;}
+                        
+                        
+                        res.render('article', {comments: comments, article: article[0]});
+                    });
             }
         );   
     }

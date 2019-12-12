@@ -1,10 +1,13 @@
-<div id="article">
-    <h1 class="article-title">{{title}}</h1>
-    <div class="article-date">{{creationDate}}</div>
-    <div class="article-author">{{username}}</div>
-    <div class="article-body">{{body}}</div>
-</div>
+{{#if article}}
+    <div id="article" class="card">
+        <div class="article-title">{{article.title}}</div>
+        <div class="article-info">Posted on {{article.creationDate}} by <a href="/user/{{article.username}}">{{article.username}}</a></div>
+        <div class="article-author"></div>
+        <div class="article-body">{{article.body}}</div>
+    </div>
+{{else}}
+    <div id="err-message">article not found</div>
+{{/if}}
 
-<div id="comments">
-    {{!-- {{>comments}} --}}
-</div>
+
+{{>comment-table}}

@@ -1,31 +1,28 @@
-<html>
-    <body>
-        <h1 id="page-title">
-            Login to Account
-        </h1>
+<div class="card login-container">
+    <h1 id="page-title">
+        Login to Account
+    </h1>
 
-        <div id="err-message" class="hidden">Message unset</div>
-        <div id="form-parent">
-            <form id="form" action="/login_user" method="post">
-                <table>
+    <div id="err-message" class="hidden">Message unset</div>
+    <div id="form-parent">
+        <form id="form" action="/login_user" method="post">
+            <table>
 
-                    <tr>
-                        <td>Username</td>
-                        <td><input type="text" name="username" placeholder="Username..." required></td>
-                    </tr>
+                <tr>
+                    <td>Username</td>
+                    <td><input type="text" name="username" placeholder="Username..." required></td>
+                </tr>
 
-                    <tr>
-                        <td>Password</td>
-                        <td><input type="password" name="password" placeholder="Password..." required></td>
-                    </tr>
-                </table>
-                <input type="submit" value="Login">
-            </form>
-        </div>
-        <br>
-        <div>
-          <a href="/newuser">Don't have an account? Click here!</a>
-        </div>
-
-    </body>
-</html>
+                <tr>
+                    <td>Password</td>
+                    <td><input type="password" name="password" placeholder="Password..." required></td>
+                </tr>
+            </table>
+            <input type="submit" value="Login">
+        </form>
+    </div>
+    <br>
+    <div>
+        <a href="/newuser">Don't have an account? Click here!</a>
+    </div>
+</div>
