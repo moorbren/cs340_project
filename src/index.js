@@ -88,8 +88,7 @@ app.get('/home', db.connectDb, function(req, res) {
     if(err){
       console.log(err)
       return;
-    } 
-    console.log(results)
+    }
     db.close(req);
     res.render('home', {results: results});
   })

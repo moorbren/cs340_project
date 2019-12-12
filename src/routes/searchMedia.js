@@ -32,8 +32,6 @@ router.post('/searchMedia', (req, res, next) => {
     }
     query += groupByString
 
-    console.log(query);
-
   req.db.query(query, function(err, results){
     if (err) return next(err);
     console.log("Media successfully searched!")
