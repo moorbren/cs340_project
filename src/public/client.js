@@ -8,8 +8,8 @@ function clearCookies(){
 
 /**
  * Extracts the value of a cookie based on the name. If non-existant, returns undefined
- * Snagged from the internet. 
- * @param {*} name 
+ * Snagged from the internet.
+ * @param {*} name
  */
 function getCookie(name) {
     var value = "; " + document.cookie;
@@ -21,12 +21,16 @@ function getCookie(name) {
 function main(){
     var session = getCookie('session');
     var username = getCookie('username');
-    
+
     if(session && username){
         console.log('User session exists, prepping page.');
         document.querySelector('#login').classList.add('hidden');
+<<<<<<< HEAD
         var ad = document.querySelector('#join-ad');
         if(ad) ad.innerHTML = "";
+=======
+
+>>>>>>> 03c0d71a9fe9f730f50a5589e8d1fa2e148c5780
 
         var logoutButton = document.querySelector('#logout');
         logoutButton.classList.remove('hidden'); //reveals this button
@@ -34,11 +38,11 @@ function main(){
             clearCookies();
             window.location = '/';
         });
-        
+
         var accountButton = document.querySelector('#display-profile');
         accountButton.classList.remove('hidden'); //reveals this button
         accountButton.addEventListener('click', function(){ //clears session details on click
-            window.location = '/user/' +getCookie('username');
+            window.location = '/user/' +getCookie('username').substring(1).slice(0,-1);
         });
     }
 
