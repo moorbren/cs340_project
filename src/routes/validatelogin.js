@@ -15,7 +15,6 @@ router.post('/login_user', (req, res, next) => {
 
   //Check to see if username exists. If yes, redirect to login user page.
   var query = "SELECT * FROM Users WHERE Users.username = " + username;
-  console.log(query)
   req.db.query(query, function(err, results){
     if (err) return next(err);
     //If no results

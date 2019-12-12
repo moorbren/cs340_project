@@ -22,7 +22,6 @@ router.post('/newuser', (req, res, next) => {
   }
 
   //Compare passwords to confirm spelling, if not redirect to create user page.
-  console.log(password + " " + passwordConfirm)
   if(password != passwordConfirm){
     console.log("PASSWORDS DO NOT MATCH");
     req.url += ''
@@ -49,7 +48,6 @@ router.post('/newuser', (req, res, next) => {
       if(err) return next(err);
     })
   });
-  req.db.close();
 
   var session = uuid.v4();
   sessionHandler.addSession(session, username);

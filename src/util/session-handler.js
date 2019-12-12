@@ -17,6 +17,7 @@ exports.isValidSession = function(uuid, username){
     //seeing if username matches the session
     if(session && session.username === username){
         if(new Date().getTime() - session.time > session_timeout){
+            console.log('Session has timed out...');
             delete global.sessionTable[uuid];
             return false;
         }
