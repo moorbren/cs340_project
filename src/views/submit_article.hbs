@@ -1,0 +1,41 @@
+<div class="card" style="margin:auto;width:50%;">
+    <h1 id="page-title">
+        Submit New Article
+    </h1>
+
+    <div id="form-parent">
+        <div id="err-message" class="hidden">Message unset</div>
+
+        <form id="form" action="/submit_article" method="post">
+            <table>
+                <input id="session-submit" class="hidden" type="text" name="session">
+                <input id="username-submit" class="hidden" type="text" name="username">
+                <input id="submit-mediaID" class="hidden" type="text" name="mediaID">
+
+                <tr>
+                    <td>Title</td>
+                    <td><input type="text" name="title" placeholder="Title of the media..." required></td>
+                </tr>
+
+                <tr>
+                    <td>Body</td>
+                    <td><textarea name="body" placeholder="Body of the media..." rows="4" cols="50" required></textarea></td>
+                </tr>
+
+                <!-- REMOVED ICON UPLOAD FOR NOW -->
+                <!-- <tr>
+                    <td>Media Icon</td>
+                    <td><input type="file" id="icon" name="icon" accept="image/png, image/jpeg"></td>
+                </tr> -->
+            </table>
+            <Br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+
+</div>
+
+<script>
+    const urlParams = new URLSearchParams(window.location.search);
+    document.querySelector('#submit-mediaID').value =  urlParams.get('mediaID');
+</script>

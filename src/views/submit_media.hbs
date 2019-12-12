@@ -1,50 +1,53 @@
-<h1 id="page-title">
-    Submit New Media
-</h1>
+<div class="card" style="margin:auto;width:50%;">
+    <h1 id="page-title">
+        Submit New Media
+    </h1>
 
-<div id="form-parent">
-    <div id="err-message" class="hidden">Message unset</div>
+    <div id="form-parent">
+        <div id="err-message" class="hidden">Message unset</div>
 
-    <form id="form" action="/submit_media" method="post">
-        <table>
-            <input id="session-submit" class="hidden" type="text" name="session">
-            <input id="username-submit" class="hidden" type="text" name="username">
+        <form id="form" action="/submit_media" method="post">
+            <table>
+                <input id="session-submit" class="hidden" type="text" name="session">
+                <input id="username-submit" class="hidden" type="text" name="username">
 
-            <tr>
-                <td>Media Type</td>
-                <td>
-                    <select name="type" id="media-type">
-                        <option value="book">Book</option>
-                        <option value="album">Album</option>
-                        <option value="song">Song</option>
-                        <option value="movie">Movie</option>
-                        <option value="tvShow">TV Show</option>
-                    </select>
-                </td>
-            </tr>
+                <tr>
+                    <td>Media Type</td>
+                    <td>
+                        <select name="type" id="media-type">
+                            <option value="book">Book</option>
+                            <option value="album">Album</option>
+                            <option value="song">Song</option>
+                            <option value="movie">Movie</option>
+                            <option value="tvShow">TV Show</option>
+                        </select>
+                    </td>
+                </tr>
 
-            <tr>
-                <td>Title</td>
-                <td><input type="text" name="title" placeholder="Title of the media..." required></td>
-            </tr>
+                <tr>
+                    <td>Title</td>
+                    <td><input type="text" name="title" placeholder="Title of the media..." required></td>
+                </tr>
 
-            <tr>
-                <td>Description</td>
-                <td><textarea name="description" placeholder="Description of the media..." rows="4" cols="50" required></textarea></td>
-            </tr>
+                <tr>
+                    <td>Description</td>
+                    <td><textarea name="description" placeholder="Description of the media..." rows="4" cols="50" required></textarea></td>
+                </tr>
 
-            <tr>
-                <td>Creator</td>
-                <td><input type="text" name="creator" placeholder="Creator of the media..." required></td>
-            </tr>
-            
-            <!-- REMOVED ICON UPLOAD FOR NOW -->
-            <!-- <tr>
-                <td>Media Icon</td>
-                <td><input type="file" id="icon" name="icon" accept="image/png, image/jpeg"></td>
-            </tr> -->
-        </table>
+                <tr>
+                    <td>Creator</td>
+                    <td><input type="text" name="creator" placeholder="Creator of the media..." required></td>
+                </tr>
+                
+                <!-- REMOVED ICON UPLOAD FOR NOW -->
+                <!-- <tr>
+                    <td>Media Icon</td>
+                    <td><input type="file" id="icon" name="icon" accept="image/png, image/jpeg"></td>
+                </tr> -->
+            </table>
+            <Br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
 
-        <input type="submit" value="Submit">
-    </form>
 </div>
