@@ -22,7 +22,7 @@ router.get('/media/:mediaID', (req, res, next) => {
         res.render('404');
 
     }else{ //only doing DB query if the id is a valid integer
-        var query = "SELECT `t`.`title` AS `Title`, `t`.`creator` AS `Creator`, AVG(`r`.`rating`) AS `Rating`, `t`.`type` AS `Type`, `t`.`description` AS `Description` FROM (`cs340_steelebe`.`Media` `t` LEFT JOIN `cs340_steelebe`.`Ratings` `r` ON (`t`.`mediaID` = `r`.`mediaID`)) WHERE `t`.`mediaID` = " + mediaID
+        var query = "SELECT `t`.`title` AS `Title`, `t`.`creator` AS `Creator`, AVG(`r`.`rating`) AS `Rating`, `t`.`type` AS `Type`, `t`.`description` AS `Description`, `t`.mediaID AS mediaID FROM (`cs340_steelebe`.`Media` `t` LEFT JOIN `cs340_steelebe`.`Ratings` `r` ON (`t`.`mediaID` = `r`.`mediaID`)) WHERE `t`.`mediaID` = " + mediaID
         console.log(mediaID);
         req.db.query(query,
             (err, results) => {

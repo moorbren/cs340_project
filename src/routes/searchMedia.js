@@ -18,7 +18,7 @@ router.post('/searchMedia', (req, res, next) => {
   var groupByString = " GROUP BY `t`.`mediaID`"
 
   //Check to see if username exists. If yes, redirect to login user page.
-  var query = "SELECT `t`.`title` AS `Title`, `t`.`creator` AS `Creator`, AVG(`r`.`rating`) AS `Rating`, `t`.`type` AS `Type`, `t`.`description` AS `Description` FROM (`cs340_steelebe`.`Media` `t` LEFT JOIN `cs340_steelebe`.`Ratings` `r` ON (`t`.`mediaID` = `r`.`mediaID`)) WHERE `t`.`type` LIKE '" + type + "'"
+  var query = "SELECT `t`.`title` AS `Title`, `t`.`creator` AS `Creator`, AVG(`r`.`rating`) AS `Rating`, `t`.`type` AS `Type`, `t`.`description` AS `Description`, `t`.mediaID AS mediaID FROM (`cs340_steelebe`.`Media` `t` LEFT JOIN `cs340_steelebe`.`Ratings` `r` ON (`t`.`mediaID` = `r`.`mediaID`)) WHERE `t`.`type` LIKE '" + type + "'"
 
     if(title != ""){
       query += titleString
