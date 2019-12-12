@@ -86,6 +86,7 @@ app.get('/home', db.connectDb, function(req, res) {
   req.db.query(query, function(err, results){
     if(err) return next(err);
     console.log(results)
+    db.close(req);
     res.render('home', {results: results});
   })
   db.close(req);

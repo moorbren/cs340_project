@@ -35,9 +35,9 @@ router.post('/searchMedia', (req, res, next) => {
     if (err) return next(err);
     console.log("Media successfully searched!")
     if(results.length == 0){
-      res.redirect("/media")
+      res.redirect("/mediasearch")
     }else{
-      res.render("media", {results: results});
+      res.render("mediasearch", {results: results});
     }
   })
 })
