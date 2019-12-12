@@ -15,6 +15,8 @@ router.post('/submit_media', (req, res, next) => {
 
 
   if(!sessionHandler.isValidSession(req.body.session, req.body.username)){
+    res.cookie('username', " ; expires = Thu, 01 Jan 1970 00:00:00 GMT");
+    res.cookie('session', " ; expires = Thu, 01 Jan 1970 00:00:00 GMT");
     res.redirect('submit_media?err=Please login to post!');
     return;
   }
