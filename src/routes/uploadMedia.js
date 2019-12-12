@@ -24,7 +24,7 @@ router.post('/submit_media', (req, res, next) => {
     if (err) return next(err);
     db.close(req);
     console.log("Media successfully uploaded!");
-    res.redirect("/media");
+    res.redirect("/media/" + results.mediaID);
     return;
   });
 
