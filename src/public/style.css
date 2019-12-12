@@ -38,7 +38,6 @@ html, body {
 }
 
 .page-content { 
-  height: 100%;
   padding: 20px;
 }
 
@@ -119,6 +118,13 @@ html, body {
 **********************************/
 
 #footer {
+  position: fixed;
+  background-attachment: scroll;
+  background-position: 0% 0%;
+  bottom: 0pt;
+  left: 0pt;
+
+  width: 100%;
   text-align: center;
   padding: 10px;
   background: white;
@@ -157,8 +163,14 @@ html, body {
   text-align: center;
 }
 
+.table-description {
+  text-align: left;
+}
+
 .table {
-  margin: auto
+  margin: auto;
+  margin-top: 30px;
+  margin-bottom: 50px; 
 }
 
 /* ===about page=== */
@@ -170,6 +182,19 @@ html, body {
 }
 
 
+/* ===user display page===*/
+
+#user-header {
+  font-size: 30px;
+  font-weight: bold;
+  margin-block-start: 0px;
+  margin-block-end: 0px;
+  padding: 10px 2px 20px 2px;
+}
+
+#user-date {
+  
+}
 
 /*********************************
 *          MISC STYLING          *
@@ -193,6 +218,7 @@ html, body {
 .card {
   box-shadow: 2px 2px 8px gray;
   background: white;
+  padding: 10px;
 }
 
 #blurb {
@@ -204,4 +230,16 @@ html, body {
 
 .hidden {
   display: none;
+}
+
+.missing-articles {
+  margin-top: 30px;
+}
+
+.verified-img {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  width: 16px;
+  height: 16px;
+  margin-left: 10px;
 }

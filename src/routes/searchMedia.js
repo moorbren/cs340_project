@@ -35,6 +35,7 @@ router.post('/searchMedia', (req, res, next) => {
 
   req.db.query(query, function(err, results){
     if (err) return next(err);
+    console.log(results);
     console.log("Media successfully searched!")
     console.log(results)
     if(results.length == 0){

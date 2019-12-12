@@ -1,0 +1,18 @@
+<div id="usercard" class="card">
+    <div><h2 isAuthor="{{isAuthor}}" id="user-header">{{username}}</h2></div>
+    <div id="user-date">{{creationDate}}</div>
+</div>
+
+<script>
+    var header = document.querySelector('#user-header');
+    if(header.getAttribute('isAuthor') === "1"){ 
+        var img = document.createElement('img');
+        img.classList.add('verified-img');
+        img.src = "https://upload.wikimedia.org/wikipedia/commons/e/e4/Twitter_Verified_Badge.svg";
+        img.alt = "Verified Author";
+        img.title = "Verified Author"
+
+        header.insertAdjacentElement("beforeend",img);
+    }
+
+</script>
