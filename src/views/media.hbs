@@ -1,75 +1,97 @@
 <div id="err-message" class="hidden">Message unset</div>
-{{#if media}}
-    {{#with media}}
-    <div id="media">
-        <h1 class="media-title">{{Title}}</h1>
-        <div class="media-creator">{{Creator}}</div>
-        <div class="media-type">{{Type}}</div>
-        <div class="media-description">{{Description}}</div>
-        {{#if Rating}}
-          <div class="media-rating">{{Rating}}</div>
-        {{else}}
-          <div class="media-ratingLink">No ratings yet! Be the first!</div>
-        {{/if}}
-        <h1 id="page-title">
-            Add Rating
-        </h1>
-        <div id="form-parent">
-            <form id="form" action="/addRating" method="post">
-                <table>
-                    <tr>
-                        <td>Rating</td>
-                        <td>
-                            <select name="rating" id="media-rating">
-                                <option value="0">0</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6">6</option>
-                                <option value="7">7</option>
-                                <option value="8">8</option>
-                                <option value="9">9</option>
-                                <option value="10">10</option>
-                            </select>
-                        </td>
-                    </tr>
-                </table>
-                  <input id="session-submit" class="hidden" type="text" name="session">
-                  <input id="username-submit" class="hidden" type="text" name="username">
-                <input type="hidden" name="passedMediaID" value="{{mediaID}}">
-                <input type="submit" value="Submit">
-            </form>
-        </div>
 
-    </div>
-    {{/with}}
+{{#if media}}
+{{#with media}}
+<div id="media" class="card" style=" margin: auto; width: 75%">
+    <table style="text-align: left; vertical-align: top; width: 100%">
+        <tbody style="width:100%">
+            <tr style="vertical-align: top;">
+                <td style="width:50%;">
+                    <div class="media-desc">
+                        <div class="article-title">{{Title}}</div>
+                        <div class="media-creator">{{Creator}}</div>
+                        <div class="media-type">MediaType: {{Type}}</div>
+                        <br>
+                        <div class="media-description">Description: {{Description}}</div>
+
+                        {{#if Rating}}
+                        <div class="media-rating"></div>
+                        {{else}}
+                        <div class="media-ratingLink">No ratings yet! Be the first!</div>
+                        {{/if}}
+                    </div>
+                </td>
+
+
+
+                <td style="width:100%;">
+                    <div id="form-parent" class="rating-widget" style="margin:auto;">
+                        <div class="article-title" style="text-align: center;">
+                            Add Rating
+                        </div>
+                        <dir style="font-size:56px; text-align: center;">{{Rating}}/10</dir>
+
+
+                        <span style="float:left">1</span><span style="float: right;">10</span>
+                        <br>
+                        <form id="form" action="/addRating" method="post">
+                            <div style="margin: auto; text-align: center;">
+                                <input style="margin-right: 5%;" type="radio" id="star10" name="rating" value="1" />
+                                <input style="margin-right: 5%;" type="radio" id="star9" name="rating" value="2" />
+                                <input style="margin-right: 5%;" type="radio" id="star8" name="rating" value="3" />
+                                <input style="margin-right: 5%;" type="radio" id="star7" name="rating" value="4" />
+                                <input style="margin-right: 5%;" type="radio" id="star6" name="rating" value="5" />
+                                <input style="margin-right: 5%;" type="radio" id="star5" name="rating" value="6" />
+                                <input style="margin-right: 5%;" type="radio" id="star4" name="rating" value="7" />
+                                <input style="margin-right: 5%;" type="radio" id="star3" name="rating" value="8" />
+                                <input style="margin-right: 5%;" type="radio" id="star2" name="rating" value="9" />
+                                <input style="margin-right: 5%;" type="radio" id="star" name="rating" value="10" />
+                            </div>
+
+                            <input id="session-submit" class="hidden" type="text" name="session">
+                            <input id="username-submit" class="hidden" type="text" name="username">
+                            <input type="hidden" name="passedMediaID" value="{{mediaID}}">
+                            <input class="header-login" style="display: block;float:none;width:100%;" type="submit"
+                                value="Submit">
+                        </form>
+                    </div>
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+{{/with}}
 
 {{else}}
 <div id="err-message">No media found</div>
 {{/if}}
 
 {{#if articles}}
-<table class="table">
-    <tr>
-        <th class="table-row table-header">Title</th>
-        <th class="table-row table-header">Creation Date</th>
-        <th class="table-row table-header">Creator</th>
-    </tr>
+<div class="card" style="margin:auto;margin-top: 30px; width:50%;">
+    <h1 class="media-title" style="text-align: center;">Related Articles</h1>
+    <table class="table">
+
+        <tr>
+            <th class="table-row table-header">Title</th>
+            <th class="table-row table-header">Creation Date</th>
+            <th class="table-row table-header">Creator</th>
+        </tr>
 
 
-    {{#each articles}}
+        {{#each articles}}
 
-    <tr>
-        <td class="table-row"><a href="/article/{{articleId}}"  >{{ArticleTitle}}</a></td>
-        <td class="table-row table-description">{{creationDate}}</td>
-        <td class="table-row">{{username}}</td>
-    </tr>
-    {{/each}}
+        <tr>
+            <td class="table-row"><a href="/article/{{articleId}}">{{ArticleTitle}}</a></td>
+            <td class="table-row table-description">{{creationDate}}</td>
+            <td class="table-row">{{username}}</td>
+        </tr>
+        {{/each}}
 
-</table>
+    </table>
+</div>
 {{else}}
 
-<div id="err-message" class="missing-articles">No articles found. :(</div>
+<div id="err-message" style="margin-top:20px;" class="missing-articles">No articles found. :(</div>
 {{/if}}

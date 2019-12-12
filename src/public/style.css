@@ -136,6 +136,27 @@ html, body {
 *     PAGE SPECIFIC STYLING      *
 **********************************/
 
+/* ===media page=== */
+
+.media-creator {
+  position: relative;
+  top: -10px;
+  font-size: 22px;
+}
+
+.media-desc {
+}
+
+.rating-widget {
+  position: relative;
+}
+
+
+
+.rating-widget-header {
+  text-align: center;
+}
+
 /* ===error page=== */
 
 #error {
