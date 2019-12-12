@@ -51,6 +51,7 @@ router.get('/media/:mediaID', (req, res, next) => {
                     } 
                     
                     res.render('media', {articles: articles, media: media[0]});
+                    return;
                 });
 
                 if(media.length == 0){

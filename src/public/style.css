@@ -157,21 +157,6 @@ html, body {
   text-align: center;
 }
 
-.table-row {
-  border-bottom: 1px solid #ddd;
-  padding: 15px;
-  text-align: center;
-}
-
-.table-description {
-  text-align: left;
-}
-
-.table {
-  margin: auto;
-  margin-top: 30px;
-  margin-bottom: 50px; 
-}
 
 /* ===about page=== */
 
@@ -184,17 +169,39 @@ html, body {
 
 /* ===user display page===*/
 
+#user-container #user-header, #user-date {
+  padding: 10px 8px 20px 8px;
+}
+
 #user-header {
   font-size: 30px;
   font-weight: bold;
   margin-block-start: 0px;
-  margin-block-end: 0px;
-  padding: 10px 2px 20px 2px;
+  margin-block-end: 0px; 
 }
 
-#user-date {
-  
+/*********************************
+*         TABLE STYLING          *
+**********************************/
+
+.table-row {
+  border-bottom: 1px solid #ddd;
+  padding: 15px;
+  text-align: left;
 }
+
+.table-header {
+  text-align: center;
+  font-size: 18px;
+}
+
+.table {
+  margin: auto;
+  margin-top: 30px;
+  margin-bottom: 50px; 
+}
+
+
 
 /*********************************
 *          MISC STYLING          *
