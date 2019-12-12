@@ -1,5 +1,4 @@
 
-    <body>
       <a href="/submit_media">Add new content!</a>
         <h1 id="page-title">
             Search For Media
@@ -47,27 +46,33 @@
                 <input type="submit" value="Submit">
             </form>
         </div>
-        
+
         {{#if results}}
-        <table class="table">
-            <tr>
-                <th class="table-row table-header">Title</th>
-                <th class="table-row table-header">Description</th>
-                <th class="table-row table-header">Creator</th>
-                <th class="table-row table-header">Type</th>
-            </tr>
-            
-
-            {{#each results}}
-            <tr>
-                <td class="table-row"><a href="/media/{{mediaId}}"  >{{this.Title}}</a></td>
-                <td class="table-row table-description">{{this.Description}}</td>
-                <td class="table-row">{{this.Creator}}</td>
-                <td class="table-row">{{this.Type}}</td>
-            </tr>
-            {{/each}}
-
-        </table>
-        {{/if}}
-
-    </body>
+        <br>
+        <hr>
+        <br>
+        <div>
+              <table style="margin: auto">
+                <tr>
+                  <th class="table-row">Title</th>
+                  <th class="table-row">Description</th>
+                  <th class="table-row">Creator</th>
+                  <th class="table-row">Type</th>
+                  <th class="table-row">Average Rating (0-10)</th>
+                </tr>
+                {{#each results}}
+                <tr>
+                    <td class="table-row"><a href="/media/{{this.mediaID}}">{{this.Title}}</a></td>
+                    <td class="table-row">{{this.Title}}</td>
+                    <td class="table-row">{{this.Creator}}</td>
+                    <td class="table-row">{{this.Type}}</td>
+                    {{#if this.Rating}}
+                      <td class="table-row">{{this.Rating}}</td>
+                    {{else}}
+                      <td class="table-row"><a href="#">Be the first to rate this!</a></td>
+                    {{/if}}
+                </tr>
+                {{/each}}
+              </table>
+            </div>
+            {{/if}}
