@@ -1,10 +1,38 @@
-<div id="media">
-    <h1 class="media-title">{{title}}</h1>
-    <div class="media-creator">{{creator}}</div>
-    <div class="media-type">{{type}}</div>
-    <div class="media-description">{{description}}</div>
-</div>
 
-<div id="comments">
-    {{!-- {{>comments}} --}}
-</div>
+{{#if media}}
+    {{#with media}}
+    <div id="media">
+        <h1 class="media-title">{{title}}</h1>
+        <div class="media-creator">{{creator}}</div>
+        <div class="media-type">{{type}}</div>
+        <div class="media-description">{{description}}</div>
+    </div>
+    {{/with}}
+
+{{else}}
+<div id="err-message">No media found</div>
+{{/if}}
+
+{{#if articles}}
+<table class="table">
+    <tr>
+        <th class="table-row">Title</th>
+        <th class="table-row">Creation Date</th>
+        <th class="table-row">Creator</th>
+    </tr>
+    
+    
+    {{#each articles}}
+    
+    <tr>
+        <td class="table-row"><a href="/article/{{articleId}}"  >{{ArticleTitle}}</a></td>
+        <td class="table-row table-description">{{creationDate}}</td>
+        <td class="table-row">{{username}}</td>
+    </tr>
+    {{/each}}
+
+</table>
+{{else}}
+
+<div id="err-message" class="missing-articles">No articles found. :(</div>
+{{/if}}

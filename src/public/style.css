@@ -38,7 +38,6 @@ html, body {
 }
 
 .page-content { 
-  height: 100%;
   padding: 20px;
 }
 
@@ -119,6 +118,13 @@ html, body {
 **********************************/
 
 #footer {
+  position: fixed;
+  background-attachment: scroll;
+  background-position: 0% 0%;
+  bottom: 0pt;
+  left: 0pt;
+
+  width: 100%;
   text-align: center;
   padding: 10px;
   background: white;
@@ -157,8 +163,14 @@ html, body {
   text-align: center;
 }
 
+.table-description {
+  text-align: left;
+}
+
 .table {
-  margin: auto
+  margin: auto;
+  margin-top: 30px;
+  margin-bottom: 50px; 
 }
 
 /* ===about page=== */
@@ -204,4 +216,8 @@ html, body {
 
 .hidden {
   display: none;
+}
+
+.missing-articles {
+  margin-top: 30px;
 }

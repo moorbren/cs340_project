@@ -17,7 +17,7 @@ router.post('/searchMedia', (req, res, next) => {
   var creatorString = " AND `creator` LIKE '%" + creator + "%'"
 
   //Check to see if username exists. If yes, redirect to login user page.
-  var query = "SELECT `type` AS `Type`, `title` AS `Title`, `description` AS `Description`, `creator` AS `Creator` FROM `Media` WHERE `type` LIKE '" + type + "'"
+  var query = "SELECT mediaId, `type` AS `Type`, `title` AS `Title`, `description` AS `Description`, `creator` AS `Creator` FROM `Media` WHERE `type` LIKE '" + type + "'"
 
     if(title != ""){
       query += titleString
@@ -33,6 +33,7 @@ router.post('/searchMedia', (req, res, next) => {
 
   req.db.query(query, function(err, results){
     if (err) return next(err);
+    console.log(results);
     console.log("Media successfully searched!")
     if(results.length == 0){
       res.redirect("/mediasearch")

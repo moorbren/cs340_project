@@ -73,7 +73,7 @@ app.use((req, res, next) => {
 app.get('/', db.connectDb, function(req, res) {
   var query = "SELECT * FROM `Top 25 Media By MEDIA ID`"
   req.db.query(query, function(err, results){
-    if(err) return next(err);
+    if(err) return;
     db.close(req);
     res.render('home', {results: results});
   })
@@ -84,7 +84,11 @@ app.get('/', db.connectDb, function(req, res) {
 app.get('/home', db.connectDb, function(req, res) {
   var query = "SELECT * FROM `Top 25 Media By MEDIA ID`"
   req.db.query(query, function(err, results){
-    if(err) return next(err);
+
+    if(err){
+      console.log(err)
+      return;
+    } 
     console.log(results)
     db.close(req);
     res.render('home', {results: results});

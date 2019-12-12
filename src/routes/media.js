@@ -23,23 +23,38 @@ router.get('/media/:mediaID', (req, res, next) => {
 
     }else{ //only doing DB query if the id is a valid integer
         
-        console.log(mediaID);
         req.db.query(
             `
-            SELECT a.title, a.creator, a.description, a.mediaID, a.type
-            FROM Media a 
-            WHERE a.mediaID = ` + mediaID + `
+            SELECT m.title, m.creator, m.description, m.mediaID, m.type
+            FROM Media m 
+            WHERE m.mediaID = ` + mediaID + `
             `,
-            (err, results) => {
-                if (err) return next(err);
-                if(results.length == 0){
+            (err, media) => {
+                if (err){
+                    res.render('500');
+                    return;
+                } 
+
+                req.db.query(` SELECT a.articleId, a.username, a.creationDate, a.title AS "ArticleTitle"
+                                FROM Articles a
+                                WHERE a.mediaID = ` + mediaID, 
+                (err, articles) =>{
+                    if (err){
+                        res.render('500');
+                        return;
+                    } 
+                    
+                    res.render('media', {articles: articles, media: media[0]});
+                });
+
+                if(media.length == 0){
                     res.render('404');
-                }else if(results.lengthn > 1){
+                }else if(media.length > 1){
                     res.render('500');
                 }
-                res.render('media', results[0]);
             }
         );
+
     }
 });
 

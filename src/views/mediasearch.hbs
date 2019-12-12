@@ -47,27 +47,27 @@
                 <input type="submit" value="Submit">
             </form>
         </div>
+        
         {{#if results}}
-        <br>
-        <hr>
-        <br>
-        <div>
-              <table style="margin: auto">
-                <tr>
-                  <th class="table-row">Title</th>
-                  <th class="table-row">Description</th>
-                  <th class="table-row">Creator</th>
-                  <th class="table-row">Type</th>
-                </tr>
-                {{#each results}}
-                <tr>
-                    <td class="table-row">{{this.Title}}</td>
-                    <td class="table-row">{{this.Title}}</td>
-                    <td class="table-row">{{this.Creator}}</td>
-                    <td class="table-row">{{this.Type}}</td>
-                </tr>
-                {{/each}}
-              </table>
-            </div>
-            {{/if}}
+        <table class="table">
+            <tr>
+                <th class="table-row">Title</th>
+                <th class="table-row">Description</th>
+                <th class="table-row">Creator</th>
+                <th class="table-row">Type</th>
+            </tr>
+            
+
+            {{#each results}}
+            <tr>
+                <td class="table-row"><a href="/media/{{mediaId}}"  >{{this.Title}}</a></td>
+                <td class="table-row table-description">{{this.Description}}</td>
+                <td class="table-row">{{this.Creator}}</td>
+                <td class="table-row">{{this.Type}}</td>
+            </tr>
+            {{/each}}
+
+        </table>
+        {{/if}}
+
     </body>
