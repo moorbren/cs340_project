@@ -4,7 +4,7 @@ const router = express.Router();
 
 /**
  * Route for listing the catalog of parts.
- * 
+ *
  * This serves as an example of joining tables to produce more complex queries. You do not need to modify anything
  * in this file.
  */
@@ -17,19 +17,14 @@ router.get('/media/:mediaID', (req, res, next) => {
         }
     }
 
-    
+
     if(!validInt || mediaID.length == 0){
         res.render('404');
 
     }else{ //only doing DB query if the id is a valid integer
-        
+        var query = "SELECT `t`.`title` AS `Title`, `t`.`creator` AS `Creator`, AVG(`r`.`rating`) AS `Rating`, `t`.`type` AS `Type`, `t`.`description` AS `Description` FROM (`cs340_steelebe`.`Media` `t` LEFT JOIN `cs340_steelebe`.`Ratings` `r` ON (`t`.`mediaID` = `r`.`mediaID`)) WHERE `t`.`mediaID` = " + mediaID
         console.log(mediaID);
-        req.db.query(
-            `
-            SELECT a.title, a.creator, a.description, a.mediaID, a.type
-            FROM Media a 
-            WHERE a.mediaID = ` + mediaID + `
-            `,
+        req.db.query(query,
             (err, results) => {
                 if (err) return next(err);
                 if(results.length == 0){

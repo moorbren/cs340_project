@@ -1,5 +1,4 @@
 
-    <body>
       <a href="/submit_media">Add new content!</a>
         <h1 id="page-title">
             Search For Media
@@ -58,16 +57,21 @@
                   <th class="table-row">Description</th>
                   <th class="table-row">Creator</th>
                   <th class="table-row">Type</th>
+                  <th class="table-row">Average Rating (0-10)</th>
                 </tr>
                 {{#each results}}
                 <tr>
-                    <td class="table-row">{{this.Title}}</td>
+                    <td class="table-row"><a href="/media/{{this.mediaID}}">{{this.Title}}</a></td>
                     <td class="table-row">{{this.Title}}</td>
                     <td class="table-row">{{this.Creator}}</td>
                     <td class="table-row">{{this.Type}}</td>
+                    {{#if this.Rating}}
+                      <td class="table-row">{{this.Rating}}</td>
+                    {{else}}
+                      <td class="table-row"><a href="#">Be the first to rate this!</a></td>
+                    {{/if}}
                 </tr>
                 {{/each}}
               </table>
             </div>
             {{/if}}
-    </body>
