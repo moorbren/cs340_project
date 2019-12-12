@@ -4,7 +4,7 @@ const db = require('../util/db-interface.js');
 
 /**
  * Route for listing the catalog of parts.
- * 
+ *
  * This serves as an example of joining tables to produce more complex queries. You do not need to modify anything
  * in this file.
  */
@@ -17,14 +17,14 @@ router.get('/article/:articleID', (req, res, next) => {
         }
     }
 
-    
+
     if(!validInt || articleID.length == 0){
         db.close(req);
         res.render('404');
         return;
- 
+
     }else{ //only doing DB query if the id is a valid integer
-        
+
         req.db.query(
             `
             SELECT a.title, a.creationDate, a.body, a.articleID, a.username, a.mediaID, m.mediaID, m.title AS "mTitle"
@@ -50,16 +50,17 @@ router.get('/article/:articleID', (req, res, next) => {
                     WHERE c.articleID = ` + articleID + ``
                     ,
                     (err, comments) => {
-                        if (err) {console.log(err); return;}
-                        
-                        
+                        if (err) {console.log(err);
+                            db.close(req);return;}
+
+
                         res.render('article', {comments: comments, article: article[0]});
+                        db.close(req)
+                        return
                     });
             }
-        );   
+        );
     }
-
-    
 });
 
 module.exports = router;

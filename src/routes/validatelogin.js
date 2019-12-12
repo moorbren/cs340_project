@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
+const db = require('../util/db-interface.js');
 
 const sessionHandler = require('../util/session-handler.js');
 const uuid = require('uuid');
@@ -15,7 +16,6 @@ router.post('/login_user', (req, res, next) => {
 
   //Check to see if username exists. If yes, redirect to login user page.
   var query = "SELECT * FROM Users WHERE Users.username = " + username;
-  console.log(query)
   req.db.query(query, function(err, results){
     if (err) return next(err);
     //If no results
@@ -41,6 +41,7 @@ router.post('/login_user', (req, res, next) => {
       });
     }
   })
+    db.close(req);
 })
 
 module.exports = router;

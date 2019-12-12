@@ -5,7 +5,7 @@ const utils = require('../util/utils.js');
 
 /**
  * Route for listing the catalog of parts.
- * 
+ *
  * This serves as an example of joining tables to produce more complex queries. You do not need to modify anything
  * in this file.
  */
@@ -25,6 +25,7 @@ router.get('/user/:username', (req, res, next) => {
         WHERE u.username="` + username + '"',
             (err, user) => {
                 if(err || user.length == 0){
+                    db.close(req);
                     res.render('404');
                     return;
                 }
@@ -36,19 +37,18 @@ router.get('/user/:username', (req, res, next) => {
                     WHERE a.username = "` + username + '"',
                     (err, articles) => {
                         if(err){
+                            db.close(req);
                             res.render('404');
                             return;
                         }
-
+                        db.close(req);
                         res.render('user', {user: user[0], articles: articles});
                         return;
                     });
-                
-            }
-        );   
-    }
 
-    
+            }
+        );
+    }
 });
 
 module.exports = router;
