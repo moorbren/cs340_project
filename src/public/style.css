@@ -169,6 +169,20 @@ html, body {
 
 /* ===article display page===*/
 
+.comment {
+  
+}
+
+.comment-date {
+  color: gray;
+}
+
+.comment-body {
+  margin-bottom: 15px;
+}
+
+
+
 .article-title {
   font-size: 32px;
   font-weight: bold;
@@ -181,11 +195,15 @@ html, body {
   margin-bottom: 30px;
 }
 
+.article-body {
+  line-height: 35px;
+}
+
 #article {
+  line-height: 20px;
   padding: 20px;
   width: 75%;
   margin: auto;
-  margin-bottom: 20px;
 }
 
 /* ===user display page===*/
@@ -201,7 +219,7 @@ html, body {
   margin-block-end: 0px; 
 }
 
-/* ===login page===*/
+/* ===login page/s===*/
 .login-container{
   width: 50%;
   margin: auto;

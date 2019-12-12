@@ -1,18 +1,11 @@
 
 {{#if comments}}
-    <table class="card table" style="padding-bottom: 30px;">
-        <tr>
-            <th class="table-row table-header">Date Added</th>
-            <th class="table-row table-header">Body</th>
-            <th class="table-row table-header">Username</th>
-        </tr>
-        
-        
+    <table class="card table" style="padding-bottom: 30px">
         {{#each comments}} 
         <tr>
-            <td class="table-row">{{this.dateAdded}}</td>
-            <td class="table-row">{{this.body}}</td>
-            <td class="table-row">{{this.username}}</td>
+            <td class="table-row comment"><div class="comment-body">
+                {{this.body}}
+            </div><span class="comment-date" >{{this.dateAdded}}</span><a style="margin-left: 15px;" href="/user/{{this.username}}" >{{this.username}}</a></td>
         </tr>
         {{/each}}
     </table>
